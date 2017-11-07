@@ -56,7 +56,7 @@
 
         function add_item(p, v) {
             p.count++;
-            p.total += v.Power_Index_rating;
+            p.total += v.Total_Population;
             p.average = p.total / p.count;       
             return p;
         }
@@ -67,7 +67,7 @@
                 p.total = 0;
                 p.average = 0;
             } else {
-                p.total -= v.Power_Index_rating;
+                p.total -= v.Total_Population;
                 p.average = p.total / p.count;
             }
             return p;
@@ -93,7 +93,7 @@
             .transitionDuration(700)
             .x(d3.scale.ordinal())
             .xUnits(dc.units.ordinal)
-            .xAxisLabel("Country")
+            .xAxisLabel("Number Zero")
             .yAxisLabel("Country")
             .yAxis().ticks(7);
 
@@ -102,14 +102,14 @@
 
         var gfpRank_dim2 = ndx.dimension(dc.pluck("Country"));
 
-        function add_item(p, v) {
+        function add_item2(p, v) {
             p.count++;
             p.total += v.Power_Index_rating;
             p.average = p.total / p.count;       
             return p;
         }
         
-        function remove_item(p, v) {
+        function remove_item2(p, v) {
             p.count--;
             if(p.count == 0){
                 p.total = 0;
@@ -121,12 +121,12 @@
             return p;
         }
         
-        function init() {
+        function init2() {
             return { count: 0, total: 0, average: 0 };
         }
         
-        var gfp_by_Country2 = gfpRank_dim2.group().reduce(add_item, remove_item, init);
-
+        var gfp_by_Country2 = gfpRank_dim2.group().reduce(add_item2, remove_item2, init2);
+        
 
         dc.barChart("#chart1")
             .height(400)
@@ -141,7 +141,7 @@
             .transitionDuration(700)
             .x(d3.scale.ordinal())
             .xUnits(dc.units.ordinal)
-            .xAxisLabel("Country")
+            .xAxisLabel("Number 1")
             .yAxisLabel("Country")
             .yAxis().ticks(7);
             
