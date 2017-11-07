@@ -17,10 +17,11 @@
 </head>
 <body>
     
+    <div id="chart0"></div>
     <div id="chart1"></div>
     <div id="Rowchart"></div>
     <div id="Rowchart2"></div>
-    <!--<div id="chart4"></div>-->
+    
     <!--<div id="pie1"></div>-->
     <!--<div id="chart5"></div>-->
     <!--<div id="chartRank"></div>-->
@@ -49,20 +50,42 @@
                 d.Power_Index_rating= 0;
             }
         });
-
-// 00000000000000000000000000000000000000000000000000000000000000000000000000000000
-
-        var gfpRank_dim = ndx.dimension(dc.pluck("Country"));
+// ................................................................................
         
-        var gfp_by_Country = gfpRank_dim.group()
+        var gfpRank_dim1 = ndx.dimension(dc.pluck("Country"));
+
+        function add_item(p, v) {
+            p.count++;
+            p.total += v.Power_Index_rating;
+            p.average = p.total / p.count;       
+            return p;
+        }
+        
+        function remove_item(p, v) {
+            p.count--;
+            if(p.count == 0){
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.Power_Index_rating;
+                p.average = p.total / p.count;
+            }
+            return p;
+        }
+        
+        function init() {
+            return { count: 0, total: 0, average: 0 };
+        }
+        
+        var gfp_by_Country1 = gfpRank_dim1.group().reduce(add_item, remove_item, init);
 
 
-        dc.barChart("#chart1")
+        dc.barChart("#chart0")
             .height(400)
             .width(533)
             .margins({top: 10, right: 50, bottom: 30, left: 50})
-            .dimension(gfpRank_dim)
-            .group(gfp_by_Country)
+            .dimension(gfpRank_dim1)
+            .group(gfp_by_Country1)
             .valueAccessor(function (d) {
                 console.log(d.value.average);
                 return d.value.average;
@@ -71,8 +94,56 @@
             .x(d3.scale.ordinal())
             .xUnits(dc.units.ordinal)
             .xAxisLabel("Country")
+            .yAxisLabel("Country")
             .yAxis().ticks(7);
-            // .yAxisLabel("GFP_Rank");
+
+
+// 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+        var gfpRank_dim2 = ndx.dimension(dc.pluck("Country"));
+
+        function add_item(p, v) {
+            p.count++;
+            p.total += v.Power_Index_rating;
+            p.average = p.total / p.count;       
+            return p;
+        }
+        
+        function remove_item(p, v) {
+            p.count--;
+            if(p.count == 0){
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.Power_Index_rating;
+                p.average = p.total / p.count;
+            }
+            return p;
+        }
+        
+        function init() {
+            return { count: 0, total: 0, average: 0 };
+        }
+        
+        var gfp_by_Country2 = gfpRank_dim2.group().reduce(add_item, remove_item, init);
+
+
+        dc.barChart("#chart1")
+            .height(400)
+            .width(533)
+            .margins({top: 10, right: 50, bottom: 30, left: 50})
+            .dimension(gfpRank_dim2)
+            .group(gfp_by_Country2)
+            .valueAccessor(function (d) {
+                console.log(d.value.average);
+                return d.value.average;
+            })
+            .transitionDuration(700)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units.ordinal)
+            .xAxisLabel("Country")
+            .yAxisLabel("Country")
+            .yAxis().ticks(7);
             
 // 11111111111111111111111111111111111111111111111111111111111111111111111111111111
         
@@ -103,51 +174,7 @@
             .xAxis().ticks(9);
 
 // 33333333333333333333333333333333333333333333333333333333333333333333333333333333
-
-       var gfpRank_dim2 = ndx.dimension(dc.pluck("Country" [1]));
-
-        function add_item(p, v) {
-            p.count++;
-            p.total += v.Power_Index_rating;
-            p.average = p.total / p.count;
-            return p;
-        }
-        
-        function remove_item(p, v) {
-            p.count--;
-            if(p.count == 0){
-                p.total = 0;
-                p.average = 0;
-            } else {
-                p.total -= v.Power_Index_rating;
-                p.average = p.total / p.count;
-            }
-            return p;
-        }
-        
-        function init() {
-            return { count: 0, total: 0, average: 0 };
-        }
-        
-        var gfp_by_Country = gfpRank_dim.group().reduce(add_item, remove_item, init);
-
-
-        dc.barChart("#chart1")
-            .height(400)
-            .width(533)
-            .margins({top: 10, right: 50, bottom: 30, left: 50})
-            .dimension(gfpRank_dim2)
-            .group(gfp_by_Country)
-            .valueAccessor(function (d) {
-                console.log(d.value.average);
-                return d.value.average;
-            })
-            .transitionDuration(700)
-            .x(d3.scale.ordinal())
-            .xUnits(dc.units.ordinal)
-            .xAxisLabel("Country")
-            .yAxisLabel("Country")
-            .yAxis().ticks(7);
+ 
 
 
         dc.renderAll();        
