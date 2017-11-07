@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css"/>
+
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+    
+</head>
+<body>
+    
+    <div id="chart1"></div>
+    <div id="Rowchart"></div>
+    <div id="Rowchart2"></div>
+    <!--<div id="chart4"></div>-->
+    <!--<div id="pie1"></div>-->
+    <!--<div id="chart5"></div>-->
+    <!--<div id="chartRank"></div>-->
+    <!--<div id="chartRank2"></div>-->
+
+    <script>
+    queue()
+        .defer(d3.csv, "data/1_Manpower_book.csv")
+        .defer(d3.csv, "data/2_Air_Power_book.csv")
+        .defer(d3.csv, "data/3_Army_Strength_book.csv")
+        .defer(d3.csv, "data/4_Navy_Strength_book.csv")
+        .defer(d3.csv, "data/5 _Petroleum_Resources_book.csv")
+        .defer(d3.csv, "data/6_Logistics_book.csv")
+        .defer(d3.csv, "data/7_Finances_book.csv")
+        .defer(d3.csv, "data/8_Geography_book.csv")
+        
+        .await(makeGraphs);
+        
+    
+    function makeGraphs(error, manpowerData) {
+        var ndx = crossfilter(manpowerData);
+
+        manpowerData.forEach(function(d){
+        d.Power_Index_rating = parseFloat(d.Power_Index_rating);
+            if (isNaN(d.Power_Index_rating)) {
+                d.Power_Index_rating= 0;
+            }
+        });
+
+// 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+
+        var gfpRank_dim = ndx.dimension(dc.pluck("Country"));
+        
+        var gfp_by_Country = gfpRank_dim.group()
+
+
+        dc.barChart("#chart1")
+            .height(400)
+            .width(533)
+            .margins({top: 10, right: 50, bottom: 30, left: 50})
+            .dimension(gfpRank_dim)
+            .group(gfp_by_Country)
+            .valueAccessor(function (d) {
+                console.log(d.value.average);
+                return d.value.average;
+            })
+            .transitionDuration(700)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units.ordinal)
+            .xAxisLabel("Country")
+            .yAxis().ticks(7);
+            // .yAxisLabel("GFP_Rank");
+            
+// 11111111111111111111111111111111111111111111111111111111111111111111111111111111
+        
+        
+        var Rowdim = ndx.dimension(dc.pluck('Country'));
+        var group = Rowdim.group().reduceSum(dc.pluck('Power_Index_rating'));
+        var Rowchart = dc.rowChart("#Rowchart");
+        
+        Rowchart
+            .width(600)
+            .height(330)
+            .dimension(Rowdim)
+            .group(group)
+            .xAxis().ticks(9);
+            // Rowchart.ordering(dc.pluck("Total_Population"));
+
+// 22222222222222222222222222222222222222222222222222222222222222222222222222222222
+
+        var Rowdim2 = ndx.dimension(dc.pluck('Country'));
+        var group = Rowdim2.group().reduceSum(dc.pluck('Total_Population'));
+        var Rowchart = dc.rowChart("#Rowchart2");
+        
+        Rowchart
+            .width(600)
+            .height(330)
+            .dimension(Rowdim2)
+            .group(group)
+            .xAxis().ticks(9);
+
+// 33333333333333333333333333333333333333333333333333333333333333333333333333333333
+
+       var gfpRank_dim2 = ndx.dimension(dc.pluck("Country" [1]));
+
+        function add_item(p, v) {
+            p.count++;
+            p.total += v.Power_Index_rating;
+            p.average = p.total / p.count;
+            return p;
+        }
+        
+        function remove_item(p, v) {
+            p.count--;
+            if(p.count == 0){
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.Power_Index_rating;
+                p.average = p.total / p.count;
+            }
+            return p;
+        }
+        
+        function init() {
+            return { count: 0, total: 0, average: 0 };
+        }
+        
+        var gfp_by_Country = gfpRank_dim.group().reduce(add_item, remove_item, init);
+
+
+        dc.barChart("#chart1")
+            .height(400)
+            .width(533)
+            .margins({top: 10, right: 50, bottom: 30, left: 50})
+            .dimension(gfpRank_dim2)
+            .group(gfp_by_Country)
+            .valueAccessor(function (d) {
+                console.log(d.value.average);
+                return d.value.average;
+            })
+            .transitionDuration(700)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units.ordinal)
+            .xAxisLabel("Country")
+            .yAxisLabel("Country")
+            .yAxis().ticks(7);
+
+
+        dc.renderAll();        
+    }         
+    
+           
+    </script>
+    
+</body>
+</html>
