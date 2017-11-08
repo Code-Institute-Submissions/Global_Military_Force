@@ -33,12 +33,19 @@
         .defer(d3.csv, "data/2_Air_Power_book.csv")
         .defer(d3.csv, "data/3_Army_Strength_book.csv")
         .defer(d3.csv, "data/4_Navy_Strength_book.csv")
-        .defer(d3.csv, "data/5 _Petroleum_Resources_book.csv")
+        .defer(d3.csv, "data/5_Petroleum_Resources_book.csv")
         .defer(d3.csv, "data/6_Logistics_book.csv")
         .defer(d3.csv, "data/7_Finances_book.csv")
         .defer(d3.csv, "data/8_Geography_book.csv")
-        .defer(d3.csv, "data/0_Aircraft_Breakdown.csv")
-        
+        .defer(d3.csv, "data/0a_Manpower_Breakdown.csv")
+        .defer(d3.csv, "data/0b_Aircraft_Breakdown.csv")
+        .defer(d3.csv, "data/0c_Army_Breakdown.csv")
+        .defer(d3.csv, "data/0d_Naval_Breakdown.csv")
+        .defer(d3.csv, "data/0e_Petroleum_Breakdown.csv")
+        .defer(d3.csv, "data/0f_Logistics_Breakdown.csv")
+        .defer(d3.csv, "data/0g_Finances_Breakdown.csv")
+        .defer(d3.csv, "data/0h_Geography_Breakdown.csv")
+
         .await(makeGraphs);
         
     
