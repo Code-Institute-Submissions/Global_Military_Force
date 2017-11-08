@@ -17,10 +17,10 @@
 </head>
 <body>
     
+    <div id="GFPBar"></div>
     <div id="chart0"></div>
     <div id="chart1"></div>
-    <div id="Rowchart"></div>
-    <div id="Rowchart2"></div>
+    <div id="popChart"></div>
     
     <!--<div id="pie1"></div>-->
     <!--<div id="chart5"></div>-->
@@ -51,20 +51,35 @@
     
     function makeGraphs(error, manpowerData) {
         var ndx = crossfilter(manpowerData);
-
-        manpowerData.forEach(function(d){
-        d.Power_Index_rating = parseFloat(d.Power_Index_rating);
-            if (isNaN(d.Power_Index_rating)) {
-                d.Power_Index_rating= 0;
-            }
-        });
+        // var ndx2 = crossfilter()
+        // manpowerData.forEach(function(d){
+        // d.Power_Index_rating = parseFloat(d.Power_Index_rating);
+        //     if (isNaN(d.Power_Index_rating)) {
+        //         d.Power_Index_rating= 0;
+        //     }
+        // });
+// ................................................................................
+        var Rowdim = ndx.dimension(dc.pluck('Country'));
+        var group = Rowdim.group().reduceSum(dc.pluck('Power_Index_rating'));
+        var GFPBar = dc.rowChart("#GFPBar");
+        
+        GFPBar
+            .width(600)
+            .height(330)
+            .dimension(Rowdim)
+            .group(group)
+            .xAxis().ticks(9);
+            // GFPBar.ordering(dc.pluck("Total_Population"));
+       
+       
 // ................................................................................
         
-        var gfpRank_dim1 = ndx.dimension(dc.pluck("Country"));
+        
+        var gfpRank_dim1 = ndx.dimension(dc.pluck("Manpower_Breakdown"));
 
         function add_item(p, v) {
             p.count++;
-            p.total += v.Total_Population;
+            p.total += v.United_States_of_America;
             p.average = p.total / p.count;       
             return p;
         }
@@ -75,7 +90,7 @@
                 p.total = 0;
                 p.average = 0;
             } else {
-                p.total -= v.Total_Population;
+                p.total -= v.United_States_of_America;
                 p.average = p.total / p.count;
             }
             return p;
@@ -86,9 +101,9 @@
         }
         
         var gfp_by_Country1 = gfpRank_dim1.group().reduce(add_item, remove_item, init);
+        var chart0 = dc.barChart("#chart0");
 
-
-        dc.barChart("#chart0")
+        chart0
             .height(400)
             .width(533)
             .margins({top: 10, right: 50, bottom: 30, left: 50})
@@ -101,8 +116,8 @@
             .transitionDuration(700)
             .x(d3.scale.ordinal())
             .xUnits(dc.units.ordinal)
-            .xAxisLabel("Number Zero")
-            .yAxisLabel("Country")
+            .xAxisLabel("Manpower Breakdown")
+            .yAxisLabel("Units")
             .yAxis().ticks(7);
 
 
@@ -112,7 +127,7 @@
 
         function add_item2(p, v) {
             p.count++;
-            p.total += v.Power_Index_rating;
+            p.total += v.Total_Military_Personnel;
             p.average = p.total / p.count;       
             return p;
         }
@@ -123,7 +138,7 @@
                 p.total = 0;
                 p.average = 0;
             } else {
-                p.total -= v.Power_Index_rating;
+                p.total -= v.Total_Military_Personnel;
                 p.average = p.total / p.count;
             }
             return p;
@@ -134,7 +149,7 @@
         }
         
         var gfp_by_Country2 = gfpRank_dim2.group().reduce(add_item2, remove_item2, init2);
-        
+        // var gfp_by_Country2 = gfpRank_dim2.group().reduceSum(dc.pluck('Total_Military_Personnel'));
 
         dc.barChart("#chart1")
             .height(400)
@@ -149,37 +164,58 @@
             .transitionDuration(700)
             .x(d3.scale.ordinal())
             .xUnits(dc.units.ordinal)
-            .xAxisLabel("Number 1")
-            .yAxisLabel("Country")
+            .xAxisLabel("Country")
+            .yAxisLabel("Total_Military_Personnel")
             .yAxis().ticks(7);
             
 // 11111111111111111111111111111111111111111111111111111111111111111111111111111111
         
         
-        var Rowdim = ndx.dimension(dc.pluck('Country'));
-        var group = Rowdim.group().reduceSum(dc.pluck('Power_Index_rating'));
-        var Rowchart = dc.rowChart("#Rowchart");
-        
-        Rowchart
-            .width(600)
-            .height(330)
-            .dimension(Rowdim)
-            .group(group)
-            .xAxis().ticks(9);
-            // Rowchart.ordering(dc.pluck("Total_Population"));
-
-// 22222222222222222222222222222222222222222222222222222222222222222222222222222222
+    
 
         var Rowdim2 = ndx.dimension(dc.pluck('Country'));
-        var group = Rowdim2.group().reduceSum(dc.pluck('Total_Population'));
-        var Rowchart = dc.rowChart("#Rowchart2");
         
-        Rowchart
-            .width(600)
-            .height(330)
+        function add_item2(p, v) {
+            p.count++;
+            p.total += v.Total_Military_Personnel;
+            p.average = p.total / p.count;       
+            return p;
+        }
+        
+        function remove_item2(p, v) {
+            p.count--;
+            if(p.count == 0){
+                p.total = 0;
+                p.average = 0;
+            } else {
+                p.total -= v.Total_Military_Personnel;
+                p.average = p.total / p.count;
+            }
+            return p;
+        }
+        
+        function init2() {
+            return { count: 0, total: 0, average: 0 };
+        }
+        
+        var popgroup = Rowdim2.group().reduce(add_item2, remove_item2, init2);
+
+        dc.barChart("#popChart")
+            .height(400)
+            .width(533)
+            .margins({top: 10, right: 50, bottom: 30, left: 50})
             .dimension(Rowdim2)
-            .group(group)
-            .xAxis().ticks(9);
+            .group(popgroup)
+            .valueAccessor(function (d) {
+                console.log(d.value.average);
+                return d.value.average;
+            })
+            .transitionDuration(700)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units.ordinal)
+            .xAxisLabel("Country")
+            .yAxisLabel("Population")
+            .yAxis().ticks(7);
 
 // 33333333333333333333333333333333333333333333333333333333333333333333333333333333
  
