@@ -1,0 +1,71 @@
+Country,Type,Count
+United States_of_America,Total_Aircraft_Strength,13762
+United States_of_America,Fighter_Aircraft,2296
+United States_of_America,Attack_Aircraft,2785
+United States_of_America,Transport_Aircraft,5739
+United States_of_America,Trainer_Aircraft,2831
+United States_of_America,Total_Helicopter_Strength,6065
+United States_of_America,Attack_Helicopters,947
+Russia,Total_Aircraft_Strength,3794
+Russia,Fighter_Aircraft,806
+Russia,Attack_Aircraft,1438
+Russia,Transport_Aircraft,1124
+Russia,Trainer_Aircraft,387
+Russia,Total_Helicopter_Strength,1389
+Russia,Attack_Helicopters,490
+China,Total_Aircraft_Strength,2955
+China,Fighter_Aircraft,1271
+China,Attack_Aircraft,1385
+China,Transport_Aircraft,782
+China,Trainer_Aircraft,352
+China,Total_Helicopter_Strength,912
+China,Attack_Helicopters,206
+India,Total_Aircraft_Strength,2102
+India,Fighter_Aircraft,676
+India,Attack_Aircraft,809
+India,Transport_Aircraft,857
+India,Trainer_Aircraft,323
+India,Total_Helicopter_Strength,666
+India,Attack_Helicopters,16
+France,Total_Aircraft_Strength,1305
+France,Fighter_Aircraft,296
+France,Attack_Aircraft,284
+France,Transport_Aircraft,662
+France,Trainer_Aircraft,283
+France,Total_Helicopter_Strength,610
+France,Attack_Helicopters,49
+United_Kingdom,Total_Aircraft_Strength,856
+United_Kingdom,Fighter_Aircraft,88
+United_Kingdom,Attack_Aircraft,168
+United_Kingdom,Transport_Aircraft,337
+United_Kingdom,Trainer_Aircraft,329
+United_Kingdom,Total_Helicopter_Strength,347
+United_Kingdom,Attack_Helicopters,33
+Japan,Total_Aircraft_Strength,1594
+Japan,Fighter_Aircraft,288
+Japan,Attack_Aircraft,287
+Japan,Transport_Aircraft,481
+Japan,Trainer_Aircraft,447
+Japan,Total_Helicopter_Strength,659
+Japan,Attack_Helicopters,119
+Turkey,Total_Aircraft_Strength,1018
+Turkey,Fighter_Aircraft,207
+Turkey,Attack_Aircraft,207
+Turkey,Transport_Aircraft,439
+Turkey,Trainer_Aircraft,276
+Turkey,Total_Helicopter_Strength,455
+Turkey,Attack_Helicopters,70
+Germany,Total_Aircraft_Strength,698
+Germany,Fighter_Aircraft,92
+Germany,Attack_Aircraft,169
+Germany,Transport_Aircraft,345
+Germany,Trainer_Aircraft,47
+Germany,Total_Helicopter_Strength,375
+Germany,Attack_Helicopters,47
+Egypt,Total_Aircraft_Strength,1132
+Egypt,Fighter_Aircraft,337
+Egypt,Attack_Aircraft,427
+Egypt,Transport_Aircraft,260
+Egypt,Trainer_Aircraft,384
+Egypt,Total_Helicopter_Strength,257
+Egypt,Attack_Helicopters,46

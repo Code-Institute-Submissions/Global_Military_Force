@@ -30,26 +30,27 @@
     <script>
     queue()
         .defer(d3.csv, "data/1_Manpower_book.csv")
-        .defer(d3.csv, "data/2_Air_Power_book.csv")
-        .defer(d3.csv, "data/3_Army_Strength_book.csv")
-        .defer(d3.csv, "data/4_Navy_Strength_book.csv")
-        .defer(d3.csv, "data/5_Petroleum_Resources_book.csv")
-        .defer(d3.csv, "data/6_Logistics_book.csv")
-        .defer(d3.csv, "data/7_Finances_book.csv")
-        .defer(d3.csv, "data/8_Geography_book.csv")
-        .defer(d3.csv, "data/0a_Manpower_Breakdown.csv")
-        .defer(d3.csv, "data/0b_Aircraft_Breakdown.csv")
-        .defer(d3.csv, "data/0c_Army_Breakdown.csv")
-        .defer(d3.csv, "data/0d_Naval_Breakdown.csv")
-        .defer(d3.csv, "data/0e_Petroleum_Breakdown.csv")
-        .defer(d3.csv, "data/0f_Logistics_Breakdown.csv")
-        .defer(d3.csv, "data/0g_Finances_Breakdown.csv")
-        .defer(d3.csv, "data/0h_Geography_Breakdown.csv")
+        .defer(d3.csv, "data/Zb_Aircraft_Breakdown.csv")
+        // .defer(d3.csv, "data/2_Air_Power_book.csv")
+        // .defer(d3.csv, "data/3_Army_Strength_book.csv")
+        // .defer(d3.csv, "data/4_Navy_Strength_book.csv")
+        // .defer(d3.csv, "data/5_Petroleum_Resources_book.csv")
+        // .defer(d3.csv, "data/6_Logistics_book.csv")
+        // .defer(d3.csv, "data/7_Finances_book.csv")
+        // .defer(d3.csv, "data/8_Geography_book.csv")
+        // .defer(d3.csv, "data/0a_Manpower_Breakdown.csv")
+        // .defer(d3.csv, "data/0b_Aircraft_Breakdown.csv")
+        // .defer(d3.csv, "data/0c_Army_Breakdown.csv")
+        // .defer(d3.csv, "data/0d_Naval_Breakdown.csv")
+        // .defer(d3.csv, "data/0e_Petroleum_Breakdown.csv")
+        // .defer(d3.csv, "data/0f_Logistics_Breakdown.csv")
+        // .defer(d3.csv, "data/0g_Finances_Breakdown.csv")
+        // .defer(d3.csv, "data/0h_Geography_Breakdown.csv")
 
         .await(makeGraphs);
         
     
-    function makeGraphs(error, manpowerData) {
+    function makeGraphs(error, manpowerData, aircraftBreakdownData) {
         var ndx = crossfilter(manpowerData);
         // var ndx2 = crossfilter()
         // manpowerData.forEach(function(d){
@@ -75,51 +76,42 @@
 // ................................................................................
         
         
-        var gfpRank_dim1 = ndx.dimension(dc.pluck("Manpower_Breakdown"));
-
-        function add_item(p, v) {
-            p.count++;
-            p.total += v.United_States_of_America;
-            p.average = p.total / p.count;       
-            return p;
-        }
+        var ndx2 = crossfilter(aircraftBreakdownData)
+        aircraftBreakdownData.forEach(function(d){
+           d.Count=parseInt(d.Count); 
+        });
         
-        function remove_item(p, v) {
-            p.count--;
-            if(p.count == 0){
-                p.total = 0;
-                p.average = 0;
+        var country_dim = ndx2.dimension(dc.pluck("Country"));
+        var FightersByCountry = country_dim.group().reduceSum(function(d) {
+            if (d.Type === "Fighter_Aircraft") {
+                return d.Count;
             } else {
-                p.total -= v.United_States_of_America;
-                p.average = p.total / p.count;
+                return 0;
             }
-            return p;
-        }
+        });
+        var AttakersByCountry = country_dim.group().reduceSum(function(d) {
+            if (d.Type === "Attack_Aircraft") {
+                return d.Count;
+            } else {
+                return 0;
+            }
+        });
         
-        function init() {
-            return { count: 0, total: 0, average: 0 };
-        }
+        console.log(FightersByCountry.all())
+    
+        var stackedChart = dc.barChart ("#chart0")
+            
+            stackedChart
+                .width(800)
+                .height(300)
+                .dimension(country_dim)
+                .group(FightersByCountry)
+                .stack(AttakersByCountry)
+                .x(d3.scale.ordinal())
+                .xUnits(dc.units.ordinal);
+                
         
-        var gfp_by_Country1 = gfpRank_dim1.group().reduce(add_item, remove_item, init);
-        var chart0 = dc.barChart("#chart0");
-
-        chart0
-            .height(400)
-            .width(533)
-            .margins({top: 10, right: 50, bottom: 30, left: 50})
-            .dimension(gfpRank_dim1)
-            .group(gfp_by_Country1)
-            .valueAccessor(function (d) {
-                console.log(d.value.average);
-                return d.value.average;
-            })
-            .transitionDuration(700)
-            .x(d3.scale.ordinal())
-            .xUnits(dc.units.ordinal)
-            .xAxisLabel("Manpower Breakdown")
-            .yAxisLabel("Units")
-            .yAxis().ticks(7);
-
+        
 
 // 00000000000000000000000000000000000000000000000000000000000000000000000000000000
 
@@ -127,7 +119,7 @@
 
         function add_item2(p, v) {
             p.count++;
-            p.total += v.Total_Military_Personnel;
+            p.total += v.Total_Population;
             p.average = p.total / p.count;       
             return p;
         }
@@ -138,7 +130,7 @@
                 p.total = 0;
                 p.average = 0;
             } else {
-                p.total -= v.Total_Military_Personnel;
+                p.total -= v.Total_Population;
                 p.average = p.total / p.count;
             }
             return p;
@@ -152,20 +144,19 @@
         // var gfp_by_Country2 = gfpRank_dim2.group().reduceSum(dc.pluck('Total_Military_Personnel'));
 
         dc.barChart("#chart1")
-            .height(400)
-            .width(533)
+            .height(500)
+            .width(640)
             .margins({top: 10, right: 50, bottom: 30, left: 50})
             .dimension(gfpRank_dim2)
             .group(gfp_by_Country2)
             .valueAccessor(function (d) {
-                console.log(d.value.average);
                 return d.value.average;
             })
             .transitionDuration(700)
             .x(d3.scale.ordinal())
             .xUnits(dc.units.ordinal)
             .xAxisLabel("Country")
-            .yAxisLabel("Total_Military_Personnel")
+            .yAxisLabel("Population")
             .yAxis().ticks(7);
             
 // 11111111111111111111111111111111111111111111111111111111111111111111111111111111
@@ -175,14 +166,14 @@
 
         var Rowdim2 = ndx.dimension(dc.pluck('Country'));
         
-        function add_item2(p, v) {
+        function add_item3(p, v) {
             p.count++;
             p.total += v.Total_Military_Personnel;
             p.average = p.total / p.count;       
             return p;
         }
         
-        function remove_item2(p, v) {
+        function remove_item3(p, v) {
             p.count--;
             if(p.count == 0){
                 p.total = 0;
@@ -194,27 +185,26 @@
             return p;
         }
         
-        function init2() {
+        function init3() {
             return { count: 0, total: 0, average: 0 };
         }
         
-        var popgroup = Rowdim2.group().reduce(add_item2, remove_item2, init2);
+        var popgroup = Rowdim2.group().reduce(add_item3, remove_item3, init3);
 
         dc.barChart("#popChart")
-            .height(400)
-            .width(533)
-            .margins({top: 10, right: 50, bottom: 30, left: 50})
+            .height(500)
+            .width(640)
+            .margins({top: 50, right: 50, bottom: 50, left: 50})
             .dimension(Rowdim2)
             .group(popgroup)
             .valueAccessor(function (d) {
-                console.log(d.value.average);
                 return d.value.average;
             })
             .transitionDuration(700)
             .x(d3.scale.ordinal())
             .xUnits(dc.units.ordinal)
             .xAxisLabel("Country")
-            .yAxisLabel("Population")
+            .yAxisLabel("Total Military Personnel")
             .yAxis().ticks(7);
 
 // 33333333333333333333333333333333333333333333333333333333333333333333333333333333
