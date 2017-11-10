@@ -124,7 +124,7 @@
                 .stack(AttakersByCountry)
                 .stack(TransportersByCountry)
                 .stack(TrainersByCountry)
-                .x(d3.scale.ordinal())
+                .x(d3.scale.ordinal().domain(["United_States_of_America","Russia","China","India","France","United_Kingdom","Japan","Turkey","Germany","Egypt"]))
                 .xUnits(dc.units.ordinal);
                 
         
@@ -170,7 +170,7 @@
                 return d.value.average;
             })
             .transitionDuration(700)
-            .x(d3.scale.ordinal())
+            .x(d3.scale.ordinal().domain(["United_States_of_America","Russia","China","India","France","United_Kingdom","Japan","Turkey","Germany","Egypt"]))
             .xUnits(dc.units.ordinal)
             .xAxisLabel("Country")
             .yAxisLabel("Population")

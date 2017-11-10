@@ -1,10 +1,10 @@
 Country,Type,Count
-United States_of_America,Total_Aircraft_Strength,13762
-United States_of_America,Fighter_Aircraft,2296
-United States_of_America,Attack_Aircraft,2785
-United States_of_America,Transport_Aircraft,5739
-United States_of_America,Trainer_Aircraft,2831
-United States_of_America,Total_Helicopter_Strength,6065
+United_States_of_America,Total_Aircraft_Strength,13762
+United_States_of_America,Fighter_Aircraft,2296
+United_States_of_America,Attack_Aircraft,2785
+United_States_of_America,Transport_Aircraft,5739
+United_States_of_America,Trainer_Aircraft,2831
+United_States_of_America,Total_Helicopter_Strength,6065
 United States_of_America,Attack_Helicopters,947
 Russia,Total_Aircraft_Strength,3794
 Russia,Fighter_Aircraft,806
