@@ -96,17 +96,34 @@
                 return 0;
             }
         });
+        var TransportersByCountry = country_dim.group().reduceSum(function(d) {
+            if (d.Type === "Transport_Aircraft") {
+                return d.Count;
+            } else {
+                return 0;
+            }
+        });
+        var TrainersByCountry = country_dim.group().reduceSum(function(d) {
+            if (d.Type === "Trainer_Aircraft") {
+                return d.Count;
+            } else {
+                return 0;
+            }
+        });
         
-        console.log(FightersByCountry.all())
+        
+        // console.log(FightersByCountry.all())
     
         var stackedChart = dc.barChart ("#chart0")
             
             stackedChart
                 .width(800)
-                .height(300)
+                .height(400)
                 .dimension(country_dim)
                 .group(FightersByCountry)
                 .stack(AttakersByCountry)
+                .stack(TransportersByCountry)
+                .stack(TrainersByCountry)
                 .x(d3.scale.ordinal())
                 .xUnits(dc.units.ordinal);
                 
