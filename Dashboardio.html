@@ -16,12 +16,40 @@
     
 </head>
 <body>
+
+<!--................................................................................Manpower-->   
     
-    <div id="GFPBar"></div>
-    <div id="chart0"></div>
-    <div id="chart1"></div>
-    <div id="popChart"></div>
+    <div class="container con1">
+        <div id="GFPBar"></div>
+        
+        <div id="TotalPopBar"></div>
+
+    </div>
     
+    
+    
+<!--................................................................................Airpower   -->
+    
+    <sectio class="container con2">
+        <div id="AirStack"></div>
+    </div>
+    
+    
+
+<!--................................................................................Army    -->    
+    
+    
+    
+<!--................................................................................Naval    -->    
+    
+    <div class="container con4">
+        <div id="popChart"></div>
+    </div>
+    
+    
+
+  
+  
     <!--<div id="pie1"></div>-->
     <!--<div id="chart5"></div>-->
     <!--<div id="chartRank"></div>-->
@@ -31,7 +59,7 @@
     queue()
         .defer(d3.csv, "data/1_Manpower_book.csv")
         .defer(d3.csv, "data/Zb_Aircraft_Breakdown.csv")
-        // .defer(d3.csv, "data/2_Air_Power_book.csv")
+        .defer(d3.csv, "data/2_Air_Power_book.csv")
         // .defer(d3.csv, "data/3_Army_Strength_book.csv")
         // .defer(d3.csv, "data/4_Navy_Strength_book.csv")
         // .defer(d3.csv, "data/5_Petroleum_Resources_book.csv")
@@ -52,13 +80,8 @@
     
     function makeGraphs(error, manpowerData, aircraftBreakdownData) {
         var ndx = crossfilter(manpowerData);
-        // var ndx2 = crossfilter()
-        // manpowerData.forEach(function(d){
-        // d.Power_Index_rating = parseFloat(d.Power_Index_rating);
-        //     if (isNaN(d.Power_Index_rating)) {
-        //         d.Power_Index_rating= 0;
-        //     }
-        // });
+      
+      
 // ................................................................................
         var Rowdim = ndx.dimension(dc.pluck('Country'));
         var group = Rowdim.group().reduceSum(dc.pluck('Power_Index_rating'));
@@ -78,34 +101,34 @@
         
         var ndx2 = crossfilter(aircraftBreakdownData)
         aircraftBreakdownData.forEach(function(d){
-           d.Count=parseInt(d.Count); 
+           d.Air_Count=parseInt(d.Air_Count); 
         });
         
         var country_dim = ndx2.dimension(dc.pluck("Country"));
         var FightersByCountry = country_dim.group().reduceSum(function(d) {
-            if (d.Type === "Fighter_Aircraft") {
-                return d.Count;
+            if (d.Air_Type === "Fighter_Aircraft") {
+                return d.Air_Count;
             } else {
                 return 0;
             }
         });
         var AttakersByCountry = country_dim.group().reduceSum(function(d) {
-            if (d.Type === "Attack_Aircraft") {
-                return d.Count;
+            if (d.Air_Type === "Attack_Aircraft") {
+                return d.Air_Count;
             } else {
                 return 0;
             }
         });
         var TransportersByCountry = country_dim.group().reduceSum(function(d) {
-            if (d.Type === "Transport_Aircraft") {
-                return d.Count;
+            if (d.Air_Type === "Transport_Aircraft") {
+                return d.Air_Count;
             } else {
                 return 0;
             }
         });
         var TrainersByCountry = country_dim.group().reduceSum(function(d) {
-            if (d.Type === "Trainer_Aircraft") {
-                return d.Count;
+            if (d.Air_Type === "Trainer_Aircraft") {
+                return d.Air_Count;
             } else {
                 return 0;
             }
@@ -114,21 +137,60 @@
         
         // console.log(FightersByCountry.all())
     
-        var stackedChart = dc.barChart ("#chart0")
+        var stackedChart = dc.barChart ("#AirStack")
             
             stackedChart
-                .width(800)
-                .height(400)
+                .width(600)
+                .height(450)
                 .dimension(country_dim)
                 .group(FightersByCountry)
                 .stack(AttakersByCountry)
                 .stack(TransportersByCountry)
                 .stack(TrainersByCountry)
-                .x(d3.scale.ordinal().domain(["United_States_of_America","Russia","China","India","France","United_Kingdom","Japan","Turkey","Germany","Egypt"]))
-                .xUnits(dc.units.ordinal);
+                .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
+                .xUnits(dc.units.ordinal)
+                .xAxisLabel("Country")
+                .yAxisLabel("Number of Aircraft");
                 
         
         
+     
+        
+        var country_dim = ndx2.dimension(dc.pluck("Country"));
+        var TotalHeliByCountry = country_dim.group().reduceSum(function(d) {
+            if (d.Air_Type === "Other_Helicopter_Strength") {
+                return d.Air_Count;
+            } else {
+                return 0;
+            }
+        });
+        var AttakersByCountry = country_dim.group().reduceSum(function(d) {
+            if (d.Air_Type === "Attack_Helicopters") {
+                return d.Air_Count;
+            } else {
+                return 0;
+            }
+        });
+        
+        
+        
+        // console.log(FightersByCountry.all())
+    
+        var stackedChart = dc.barChart ("#AirStack")
+            
+            stackedChart
+                .width(600)
+                .height(450)
+                .dimension(country_dim)
+                .group(FightersByCountry)
+                .stack(AttakersByCountry)
+                .stack(TransportersByCountry)
+                .stack(TrainersByCountry)
+                .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
+                .xUnits(dc.units.ordinal)
+                .xAxisLabel("Country")
+                .yAxisLabel("Number of Aircraft");
+
 
 // 00000000000000000000000000000000000000000000000000000000000000000000000000000000
 
@@ -160,7 +222,7 @@
         var gfp_by_Country2 = gfpRank_dim2.group().reduce(add_item2, remove_item2, init2);
         // var gfp_by_Country2 = gfpRank_dim2.group().reduceSum(dc.pluck('Total_Military_Personnel'));
 
-        dc.barChart("#chart1")
+        dc.barChart("#TotalPopBar")
             .height(500)
             .width(640)
             .margins({top: 10, right: 50, bottom: 30, left: 50})
@@ -170,7 +232,7 @@
                 return d.value.average;
             })
             .transitionDuration(700)
-            .x(d3.scale.ordinal().domain(["United_States_of_America","Russia","China","India","France","United_Kingdom","Japan","Turkey","Germany","Egypt"]))
+            .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
             .xUnits(dc.units.ordinal)
             .xAxisLabel("Country")
             .yAxisLabel("Population")

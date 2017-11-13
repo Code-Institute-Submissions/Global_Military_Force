@@ -1,10 +1,10 @@
 Country,Total_Aircraft_Strength,Fighter_Aircraft,Attack_Aircraft,Transport_Aircraft,Trainer_Aircraft,Total_Helicopter_Strength,Attack_Helicopters
-United States of America,13762,2296,2785,5739,2831,6065,947
+USA,13762,2296,2785,5739,2831,6065,947
 Russia,3794,806,1438,1124,387,1389,490
 China,2955,1271,1385,782,352,912,206
 India,2102,676,809,857,323,666,16
 France,1305,296,284,662,283,610,49
-United Kingdom,856,88,168,337,329,347,33
+UK,856,88,168,337,329,347,33
 Japan,1594,288,287,481,447,659,119
 Turkey,1018,207,207,439,276,455,70
 Germany,698,92,169,345,47,375,47
