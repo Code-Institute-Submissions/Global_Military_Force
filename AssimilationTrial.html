@@ -97,12 +97,23 @@
             
         
         function makeGraphs(error, manpowerData, TotalData) {
-            var ndx0 = crossfilter(manpowerData);
+            var ndx = crossfilter(TotalData);
             
           
     // ................................................................................MANPOWER Ranked
-            var country_dim0 = ndx0.dimension(dc.pluck('Country'));
-            var group = country_dim0.group().reduceSum(dc.pluck('Power_Index_rating'));
+            var country_dim0 = ndx.dimension(dc.pluck('Country'));
+
+            var group = country_dim0.group().reduceSum(function(d) {
+                if (d.Type === "Power_Index_rating") {
+                    return d.Count;
+                } else {
+                    return 0;
+                }
+            });
+
+
+            console.log(group.all())
+            
             var GFPBar = dc.rowChart("#GFPBar");
             
             GFPBar
@@ -114,7 +125,7 @@
         
     // ................................................................................Manpower Fixed 
         
-            var ndx1 = crossfilter(TotalData)
+            var ndx1 = ndx
             TotalData.forEach(function(d){
                d.Count=parseInt(d.Count); 
             });
