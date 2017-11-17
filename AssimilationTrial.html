@@ -86,19 +86,17 @@
     <!--................................................................................-->
       
       
+
     
         <script>
         queue()
             .defer(d3.csv, "data/1_Manpower_book.csv")
-            .defer(d3.csv, "data/Za_Manpower_Breakdown.csv")
-            .defer(d3.csv, "data/Zb_Aircraft_Breakdown.csv")
-            .defer(d3.csv, "data/Zc_Army_Breakdown.csv")
-            .defer(d3.csv, "data/Zd_Naval_Breakdown.csv")
+            .defer(d3.csv, "data/Z_Total_Breakdown.csv")
     
             .await(makeGraphs);
             
         
-        function makeGraphs(error, manpowerData, ManpowerBreakdownData, aircraftBreakdownData, ArmyBreakdownData, NavalBreakdownData) {
+        function makeGraphs(error, manpowerData, TotalData) {
             var ndx0 = crossfilter(manpowerData);
             
           
@@ -116,18 +114,16 @@
         
     // ................................................................................Manpower Fixed 
         
-        
-        
-        
-            var ndx1 = crossfilter(ManpowerBreakdownData)
-            ManpowerBreakdownData.forEach(function(d){
-               d.Man_Count=parseInt(d.Man_Count); 
+            var ndx1 = crossfilter(TotalData)
+            TotalData.forEach(function(d){
+               d.Count=parseInt(d.Count); 
             });
+        
             
             var gfpRank_dim2 = ndx1.dimension(dc.pluck("Country"));
             var gfp_by_Country2 = gfpRank_dim2.group().reduceSum(function(d) {
-                if (d.Man_Type === "Total_Population") {
-                    return d.Man_Count;
+                if (d.Type === "Total_Population") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
@@ -156,15 +152,15 @@
             
             var ManpowerDim = ndx1.dimension(dc.pluck('Country'));
             var ManpowerAvailByCountry = ManpowerDim.group().reduceSum(function(d) {
-                if (d.Man_Type === "Manpower_Available") {
-                    return d.Man_Count;
+                if (d.Type === "Manpower_Available") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var ReachingAgeByCountry = ManpowerDim.group().reduceSum(function(d) {
-                if (d.Man_Type === "Reaching_Military_Age") {
-                    return d.Man_Count;
+                if (d.Type === "Reaching_Military_Age") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
@@ -193,15 +189,15 @@
             
             var Rowdim2 = ndx1.dimension(dc.pluck('Country'));
             var ActivePersByCountry = Rowdim2.group().reduceSum(function(d) {
-                if (d.Man_Type === "Active_Personnel") {
-                    return d.Man_Count;
+                if (d.Type === "Active_Personnel") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var ReservePersByCountry = Rowdim2.group().reduceSum(function(d) {
-                if (d.Man_Type === "Reserve_Personnel") {
-                    return d.Man_Count;
+                if (d.Type === "Reserve_Personnel") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
@@ -234,17 +230,11 @@
     // ................................................................................AIRPOWER
             
             
-            var ndx2 = crossfilter(aircraftBreakdownData)
-            aircraftBreakdownData.forEach(function(d){
-               d.Air_Count=parseInt(d.Air_Count); 
-            });
             
-           
-            
-            var country_dim1 = ndx2.dimension(dc.pluck("Country"));
+            var country_dim1 = ndx1.dimension(dc.pluck("Country"));
             var TotalAirStrByCountry = country_dim1.group().reduceSum(function(d) {
-                if (d.Air_Type === "Total_Aircraft_Strength") {
-                    return d.Air_Count;
+                if (d.Type === "Total_Aircraft_Strength") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
@@ -270,31 +260,31 @@
             
             
     
-            var country_dim2 = ndx2.dimension(dc.pluck("Country"));
+            var country_dim2 = ndx1.dimension(dc.pluck("Country"));
             var FightersByCountry = country_dim2.group().reduceSum(function(d) {
-                if (d.Air_Type === "Fighter_Aircraft") {
-                    return d.Air_Count;
+                if (d.Type === "Fighter_Aircraft") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var AttakersByCountry = country_dim2.group().reduceSum(function(d) {
-                if (d.Air_Type === "Attack_Aircraft") {
-                    return d.Air_Count;
+                if (d.Type === "Attack_Aircraft") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var TransportersByCountry = country_dim2.group().reduceSum(function(d) {
-                if (d.Air_Type === "Transport_Aircraft") {
-                    return d.Air_Count;
+                if (d.Type === "Transport_Aircraft") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var TrainersByCountry = country_dim2.group().reduceSum(function(d) {
-                if (d.Air_Type === "Trainer_Aircraft") {
-                    return d.Air_Count;
+                if (d.Type === "Trainer_Aircraft") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
@@ -324,17 +314,17 @@
                     
          
             
-            var country_dim3 = ndx2.dimension(dc.pluck("Country"));
+            var country_dim3 = ndx1.dimension(dc.pluck("Country"));
             var TotalHeliByCountry = country_dim3.group().reduceSum(function(d) {
-                if (d.Air_Type === "Other_Helicopter_Strength") {
-                    return d.Air_Count;
+                if (d.Type === "Other_Helicopter_Strength") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var AttackHeliByCountry = country_dim3.group().reduceSum(function(d) {
-                if (d.Air_Type === "Attack_Helicopters") {
-                    return d.Air_Count;
+                if (d.Type === "Attack_Helicopters") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
@@ -363,43 +353,39 @@
     // ................................................................................ARMY
            
            
-           var ndx3 = crossfilter(ArmyBreakdownData)
-            ArmyBreakdownData.forEach(function(d){
-               d.Vehicle_Count=parseInt(d.Vehicle_Count); 
-            });
-            
-            var ArmyDim = ndx3.dimension(dc.pluck("Country"));
+           
+            var ArmyDim = ndx1.dimension(dc.pluck("Country"));
             var CombatTanksByCountry = ArmyDim.group().reduceSum(function(d) {
-                if (d.Vehicle_Type === "Combat_Tanks") {
-                    return d.Vehicle_Count;
+                if (d.Type === "Combat_Tanks") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var ArmouredFVByCountry = ArmyDim.group().reduceSum(function(d) {
-                if (d.Vehicle_Type === "Armoured_Fighting_Vehicles") {
-                    return d.Vehicle_Count;
+                if (d.Type === "Armoured_Fighting_Vehicles") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var SelfPropArtilleryByCountry = ArmyDim.group().reduceSum(function(d) {
-                if (d.Vehicle_Type === "Self_Propelled_Artillery") {
-                    return d.Vehicle_Count;
+                if (d.Type === "Self_Propelled_Artillery") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var TowedArtilleryByCountry = ArmyDim.group().reduceSum(function(d) {
-                if (d.Vehicle_Type === "Towed_Artillery") {
-                    return d.Vehicle_Count;
+                if (d.Type === "Towed_Artillery") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var RocketProjByCountry = ArmyDim.group().reduceSum(function(d) {
-                if (d.Vehicle_Type === "Rocket_Projectors") {
-                    return d.Vehicle_Count;
+                if (d.Type === "Rocket_Projectors") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
@@ -431,15 +417,12 @@
     // ................................................................................NAVY        
             
             
-            var ndx4 = crossfilter(NavalBreakdownData)
-            NavalBreakdownData.forEach(function(d){
-               d.Naval_Count=parseInt(d.Naval_Count); 
-            });
             
-            var NavalDim = ndx4.dimension(dc.pluck("Country"));
+            
+            var NavalDim = ndx1.dimension(dc.pluck("Country"));
             var TotalNavalAssByCountry = NavalDim.group().reduceSum(function(d) {
-                if (d.Naval_Type === "Total_Naval_Assets") {
-                    return d.Naval_Count;
+                if (d.Type === "Total_Naval_Assets") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
@@ -465,52 +448,52 @@
             
             
             
-            var NavalDim2 = ndx4.dimension(dc.pluck("Country"));
+            var NavalDim2 = ndx1.dimension(dc.pluck("Country"));
             var MineVesselsByCountry = NavalDim2.group().reduceSum(function(d) {
-                if (d.Naval_Type === "Mine_Warefare_Vessels") {
-                    return d.Naval_Count;
+                if (d.Type === "Mine_Warefare_Vessels") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var PatrolCraftByCountry = NavalDim2.group().reduceSum(function(d) {
-                if (d.Naval_Type === "Patrol_Craft") {
-                    return d.Naval_Count;
+                if (d.Type === "Patrol_Craft") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var SubmarinesByCountry = NavalDim2.group().reduceSum(function(d) {
-                if (d.Naval_Type === "Submarines") {
-                    return d.Naval_Count;
+                if (d.Type === "Submarines") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var CorvettesByCountry = NavalDim2.group().reduceSum(function(d) {
-                if (d.Naval_Type === "Corvettes") {
-                    return d.Naval_Count;
+                if (d.Type === "Corvettes") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var DestroyersByCountry = NavalDim2.group().reduceSum(function(d) {
-                if (d.Naval_Type === "Destroyers") {
-                    return d.Naval_Count;
+                if (d.Type === "Destroyers") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var FrigatesByCountry = NavalDim2.group().reduceSum(function(d) {
-                if (d.Naval_Type === "Frigates") {
-                    return d.Naval_Count;
+                if (d.Type === "Frigates") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
             });
             var AircraftCarriersByCountry = NavalDim2.group().reduceSum(function(d) {
-                if (d.Naval_Type === "Aircraft_Carriers") {
-                    return d.Naval_Count;
+                if (d.Type === "Aircraft_Carriers") {
+                    return d.Count;
                 } else {
                     return 0;
                 }
