@@ -20,19 +20,22 @@
     <body>
     
     <!--................................................................................Manpower-->   
-        
+        <div class="chart-stage">
+            <button class="btn btn-warning"><a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a></button>
+
+        </div>
         
         <div class="container con1 nopadding">
             <div class="row row1">
-                    <div class="col-md-6" id="GFPBar"></div>
+                    <div class="col-md-6" id="GFPRank"></div>
                     <div class="col-md-6" id="TotalPopBar"></div>
             </div>        
         </div>
          
         <div class="container con2 nopadding">
             <div class="row row2">
-                    <div class="col-md-6" id="ManpowerAgeBar"></div>
-                    <div class="col-md-6" id="TotMilPerBar"></div>
+                    <div class="col-md-6" id="ManpowerStack"></div>
+                    <div class="col-md-6" id="TotPersStack"></div>
             </div>        
         </div>
         <hr>
@@ -90,20 +93,19 @@
     
         <script>
         queue()
-            .defer(d3.csv, "data/1_Manpower_book.csv")
             .defer(d3.csv, "data/Z_Total_Breakdown.csv")
     
             .await(makeGraphs);
             
         
-        function makeGraphs(error, manpowerData, TotalData) {
+        function makeGraphs(error, TotalData) {
             var ndx = crossfilter(TotalData);
             
           
     // ................................................................................MANPOWER Ranked
-            var country_dim0 = ndx.dimension(dc.pluck('Country'));
+            var GFPRank_dim = ndx.dimension(dc.pluck('Country'));
 
-            var group = country_dim0.group().reduceSum(function(d) {
+            var GFPRank_group = GFPRank_dim.group().reduceSum(function(d) {
                 if (d.Type === "Power_Index_rating") {
                     return d.Count;
                 } else {
@@ -112,27 +114,22 @@
             });
 
 
-            console.log(group.all())
+            console.log(GFPRank_group.all());
             
-            var GFPBar = dc.rowChart("#GFPBar");
+            var GFPBar = dc.rowChart("#GFPRank");
             
             GFPBar
                 .width(600)
                 .height(450)
-                .dimension(country_dim0)
-                .group(group)
+                .dimension(GFPRank_dim)
+                .group(GFPRank_group)
                 .xAxis().ticks(9);
         
     // ................................................................................Manpower Fixed 
         
-            var ndx1 = ndx
-            TotalData.forEach(function(d){
-               d.Count=parseInt(d.Count); 
-            });
         
-            
-            var gfpRank_dim2 = ndx1.dimension(dc.pluck("Country"));
-            var gfp_by_Country2 = gfpRank_dim2.group().reduceSum(function(d) {
+            var TotalPop_dim = ndx.dimension(dc.pluck("Country"));
+            var TotalPop_group = TotalPop_dim.group().reduceSum(function(d) {
                 if (d.Type === "Total_Population") {
                     return d.Count;
                 } else {
@@ -147,8 +144,8 @@
                 PopChart
                     .width(600)
                     .height(450)
-                    .dimension(gfpRank_dim2)
-                    .group(gfp_by_Country2)
+                    .dimension(TotalPop_dim)
+                    .group(TotalPop_group)
                     .transitionDuration(700)
                     .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
                     .xUnits(dc.units.ordinal)
@@ -161,29 +158,29 @@
 
 
             
-            var ManpowerDim = ndx1.dimension(dc.pluck('Country'));
-            var ManpowerAvailByCountry = ManpowerDim.group().reduceSum(function(d) {
+            var Manpower_dim = ndx.dimension(dc.pluck('Country'));
+            var Manpower_group = Manpower_dim.group().reduceSum(function(d) {
                 if (d.Type === "Manpower_Available") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var ReachingAgeByCountry = ManpowerDim.group().reduceSum(function(d) {
+            var ReachingAgeByCountry = Manpower_dim.group().reduceSum(function(d) {
                 if (d.Type === "Reaching_Military_Age") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var MilChart = dc.barChart ("#ManpowerAgeBar");
+            var MilChart = dc.barChart ("#ManpowerStack");
                 
                 MilChart
                     .width(600)
                     .height(450)
                     .margins({top: 50, right: 50, bottom: 50, left: 50})
-                    .dimension(ManpowerDim)
-                    .group(ManpowerAvailByCountry)
+                    .dimension(Manpower_dim)
+                    .group(Manpower_group)
                     .stack(ReachingAgeByCountry)
                     .transitionDuration(700)
                     .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
@@ -198,28 +195,28 @@
             
             
             
-            var Rowdim2 = ndx1.dimension(dc.pluck('Country'));
-            var ActivePersByCountry = Rowdim2.group().reduceSum(function(d) {
+            var TotalPersonnel_dim = ndx.dimension(dc.pluck('Country'));
+            var ActivePersByCountry = TotalPersonnel_dim.group().reduceSum(function(d) {
                 if (d.Type === "Active_Personnel") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var ReservePersByCountry = Rowdim2.group().reduceSum(function(d) {
+            var ReservePersByCountry = TotalPersonnel_dim.group().reduceSum(function(d) {
                 if (d.Type === "Reserve_Personnel") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var MilChart = dc.barChart ("#TotMilPerBar");
+            var MilChart = dc.barChart ("#TotPersStack");
                 
                 MilChart
                     .width(600)
                     .height(450)
                     .margins({top: 50, right: 50, bottom: 50, left: 50})
-                    .dimension(Rowdim2)
+                    .dimension(TotalPersonnel_dim)
                     .group(ActivePersByCountry)
                     .stack(ReservePersByCountry)
                     .transitionDuration(700)
@@ -242,8 +239,8 @@
             
             
             
-            var country_dim1 = ndx1.dimension(dc.pluck("Country"));
-            var TotalAirStrByCountry = country_dim1.group().reduceSum(function(d) {
+            var TotalAir_dim = ndx.dimension(dc.pluck("Country"));
+            var TotalAirStrByCountry = TotalAir_dim.group().reduceSum(function(d) {
                 if (d.Type === "Total_Aircraft_Strength") {
                     return d.Count;
                 } else {
@@ -258,7 +255,7 @@
                 stackedChart
                     .width(600)
                     .height(450)
-                    .dimension(country_dim1)
+                    .dimension(TotalAir_dim)
                     .group(TotalAirStrByCountry)
                     .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
                     .xUnits(dc.units.ordinal)
@@ -271,29 +268,29 @@
             
             
     
-            var country_dim2 = ndx1.dimension(dc.pluck("Country"));
-            var FightersByCountry = country_dim2.group().reduceSum(function(d) {
+            var AirBreak_dim = ndx.dimension(dc.pluck("Country"));
+            var FightersByCountry = AirBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Fighter_Aircraft") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var AttakersByCountry = country_dim2.group().reduceSum(function(d) {
+            var AttakersByCountry = AirBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Attack_Aircraft") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var TransportersByCountry = country_dim2.group().reduceSum(function(d) {
+            var TransportersByCountry = AirBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Transport_Aircraft") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var TrainersByCountry = country_dim2.group().reduceSum(function(d) {
+            var TrainersByCountry = AirBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Trainer_Aircraft") {
                     return d.Count;
                 } else {
@@ -302,15 +299,12 @@
             });
             
             
-
-            
-            
             var stackedChart = dc.barChart ("#AirStack")
                 
                 stackedChart
                     .width(600)
                     .height(450)
-                    .dimension(country_dim2)
+                    .dimension(AirBreak_dim)
                     .group(FightersByCountry)
                     .stack(AttakersByCountry)
                     .stack(TransportersByCountry)
@@ -325,15 +319,15 @@
                     
          
             
-            var country_dim3 = ndx1.dimension(dc.pluck("Country"));
-            var TotalHeliByCountry = country_dim3.group().reduceSum(function(d) {
+            var Heli_dim = ndx.dimension(dc.pluck("Country"));
+            var TotalHeliByCountry = Heli_dim.group().reduceSum(function(d) {
                 if (d.Type === "Other_Helicopter_Strength") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var AttackHeliByCountry = country_dim3.group().reduceSum(function(d) {
+            var AttackHeliByCountry = Heli_dim.group().reduceSum(function(d) {
                 if (d.Type === "Attack_Helicopters") {
                     return d.Count;
                 } else {
@@ -347,7 +341,7 @@
                 stackedChart
                     .width(600)
                     .height(450)
-                    .dimension(country_dim3)
+                    .dimension(Heli_dim)
                     .group(TotalHeliByCountry)
                     .stack(AttackHeliByCountry)
                     .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
@@ -365,7 +359,7 @@
            
            
            
-            var ArmyDim = ndx1.dimension(dc.pluck("Country"));
+            var ArmyDim = ndx.dimension(dc.pluck("Country"));
             var CombatTanksByCountry = ArmyDim.group().reduceSum(function(d) {
                 if (d.Type === "Combat_Tanks") {
                     return d.Count;
@@ -430,7 +424,7 @@
             
             
             
-            var NavalDim = ndx1.dimension(dc.pluck("Country"));
+            var NavalDim = ndx.dimension(dc.pluck("Country"));
             var TotalNavalAssByCountry = NavalDim.group().reduceSum(function(d) {
                 if (d.Type === "Total_Naval_Assets") {
                     return d.Count;
@@ -459,50 +453,50 @@
             
             
             
-            var NavalDim2 = ndx1.dimension(dc.pluck("Country"));
-            var MineVesselsByCountry = NavalDim2.group().reduceSum(function(d) {
+            var NavalBreak_dim = ndx.dimension(dc.pluck("Country"));
+            var MineVesselsByCountry = NavalBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Mine_Warefare_Vessels") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var PatrolCraftByCountry = NavalDim2.group().reduceSum(function(d) {
+            var PatrolCraftByCountry = NavalBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Patrol_Craft") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var SubmarinesByCountry = NavalDim2.group().reduceSum(function(d) {
+            var SubmarinesByCountry = NavalBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Submarines") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var CorvettesByCountry = NavalDim2.group().reduceSum(function(d) {
+            var CorvettesByCountry = NavalBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Corvettes") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var DestroyersByCountry = NavalDim2.group().reduceSum(function(d) {
+            var DestroyersByCountry = NavalBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Destroyers") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var FrigatesByCountry = NavalDim2.group().reduceSum(function(d) {
+            var FrigatesByCountry = NavalBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Frigates") {
                     return d.Count;
                 } else {
                     return 0;
                 }
             });
-            var AircraftCarriersByCountry = NavalDim2.group().reduceSum(function(d) {
+            var AircraftCarriersByCountry = NavalBreak_dim.group().reduceSum(function(d) {
                 if (d.Type === "Aircraft_Carriers") {
                     return d.Count;
                 } else {
@@ -518,7 +512,7 @@
                 NavalChart2
                     .width(600)
                     .height(450)
-                    .dimension(NavalDim2)
+                    .dimension(NavalBreak_dim)
                     .group(MineVesselsByCountry)
                     .stack(PatrolCraftByCountry)
                     .stack(SubmarinesByCountry)
