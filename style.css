@@ -1,5 +1,39 @@
+.title-bar {
+        width: 100%;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0);
+        border-bottom: 1px solid #c1272d;
+        margin-left:0px;
+        margin-right:0px;
+}
+
 .navbar {
-        width: 20rem;
-        height: 60rem;
-        background-color: red;
+        width: 15rem;
+        height: 28rem;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0);
+}
+
+a {
+        padding-bottom: 1rem;
+}
+
+a, h1, h4 {
+        color: white;
+}
+
+hr { 
+        border-top: 1px solid #c1272d;
+}
+.nav-hr {
+        border-bottom: 1px solid #c1272d;
+        padding-bottom: 2rem;
+}
+
+.row1 {
+        border: 5px solid #FFAA00;
+        border-radius: 60px;
+        width: 90%;
+        background: rgb(255, 255, 255);
+        background: rgba(255, 255, 255, 0.5);
 }
