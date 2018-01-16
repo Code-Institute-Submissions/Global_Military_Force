@@ -1,8 +1,5 @@
-        /*.nopadding {*/
-        /*   padding: 0 !important;*/
-        /*   margin: 0 !important;*/
-        /*}*/
-        
-        /*.row1 {*/
-        /*    width: 100%*/
-        /*}*/
+.navbar {
+        width: 20rem;
+        height: 60rem;
+        background-color: red;
+}

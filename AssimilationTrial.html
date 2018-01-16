@@ -4,12 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+        <title>Global Military Firepower</title>
         
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
         
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
@@ -19,79 +18,104 @@
     </head>
     <body>
     
-    <!--................................................................................Manpower-->   
-        <div class="chart-stage">
-            <button class="btn btn-warning"><a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a></button>
-
-        </div>
-        
-        <div class="container con1 nopadding">
-            <div class="row row1">
-                    <div class="col-md-6" id="GFPRank"></div>
-                    <div class="col-md-6" id="TotalPopBar"></div>
-            </div>        
-        </div>
-         
-        <div class="container con2 nopadding">
-            <div class="row row2">
-                    <div class="col-md-6" id="ManpowerStack"></div>
-                    <div class="col-md-6" id="TotPersStack"></div>
-            </div>        
-        </div>
-        <hr>
-        <hr>
-        
-        
-    <!--................................................................................Airpower   -->
-        
-        
-        <div class="container con3 nopadding">
-            <div class="row row3">
-                    <div class="col-md-6" id="TotalAir"></div>
-                    <div class="col-md-6" id="AirStack"></div>
-            </div>        
-        </div>
-         
-        <div class="container con4 nopadding">
-            <div class="row row4">
-                    <div class="col-md-6" id="HeliStack"></div>
+    <!--................................................................................Navbar-->   
+<div class="container container-all">
+    <h1 class="col-md-6 col-md-offset-3">Global Military Firepower</h1>  
+        <div class="container container-navbar">
+            <nav class="navbar navbar-fixed-top">
+                <div class="row">
+                    <a class="navbar-brand col-md-12" href="#">Global Military Firepower</a>
+                    <a class="col-md-12" href="#Manpower">Manpower</a>
+                    <a class="col-md-12" href="#Air">Airpower</a>
+                    <a class="col-md-12" href="#Army">Army Strength</a>
+                    <a class="col-md-12" href="#Naval">Naval Power</a>
                     
-            </div>        
+                    <div class="chart-stage">
+                        <button class="btn btn-warning"><a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a></button>
+                    </div>
+                </div>
+            </nav>
         </div>
-        <hr>
-        <hr>
+       
+    <!--................................................................................Manpower-->    
+    <div class="container container-body">   
+    
+            <h2 class="col-md-6 col-md-offset-3">Manpower</h2>
+            <a name="Manpower"></a>
+            <!--<div class="container con1 nopadding">-->
+                <div class="row row1">
+                        <div class="col-md-6" id="GFPRank"></div>
+                        <div class="col-md-6" id="TotalPopBar"></div>
+                </div>        
+            <!--</div>-->
+             
+            <!--<div class="container con2 nopadding">-->
+                <div class="row row2">
+                        <div class="col-md-6" id="ManpowerStack"></div>
+                        <div class="col-md-6" id="TotPersStack"></div>
+                </div>        
+            <!--</div>-->
+            <hr>
+            <hr>
+            
+            
+        <!--................................................................................Airpower   -->
+            
+            <h2 class="col-md-6 col-md-offset-3">Airpower</h2>
+            <a name="Air"></a>
+            <!--<div class="container con3 nopadding">-->
+                <div class="row row3">
+                        <div class="col-md-6" id="TotalAir"></div>
+                        <div class="col-md-6" id="AirStack"></div>
+                </div>        
+            <!--</div>-->
+             
+            <!--<div class="container con4 nopadding">-->
+                <div class="row row4">
+                        <div class="col-md-6" id="HeliStack"></div>
+                        
+                </div>        
+            <!--</div>-->
+            <hr>
+            <hr>
+            
+            
+        <!--................................................................................Army    -->    
+            
+            <h2 class="col-md-6 col-md-offset-3">Army Strength</h2>
+            <a name="Army"></a>
+            
+            <!--<div class="container con5 nopadding">-->
+                <div class="row row5">
+                        <div class="col-md-6" id="ArmyStack"></div>
+                </div>        
+            <!--</div>-->
+            <hr>
+            <hr>
+            
+        <!--................................................................................Naval    -->    
+            
+            <h2 class="col-md-6 col-md-offset-3">Naval power</h2>
+            <a name="Naval"></a>
+            
+            <!--<div class="container con6 nopadding">-->
+                <div class="row row6">
+                        <div class="col-md-6" id="TotalNavalBar"></div>
+                        <div class="col-md-6" id="NavalStack"></div>
+                </div>        
+            <!--</div>-->
+            <hr>
+            <hr>
+            
         
-        
-    <!--................................................................................Army    -->    
-        
-        
-        <div class="container con5 nopadding">
-            <div class="row row5">
-                    <div class="col-md-6" id="ArmyStack"></div>
-            </div>        
-        </div>
-        <hr>
-        <hr>
-        
-    <!--................................................................................Naval    -->    
-        
-        
-        <div class="container con6 nopadding">
-            <div class="row row6">
-                    <div class="col-md-6" id="TotalNavalBar"></div>
-                    <div class="col-md-6" id="NavalStack"></div>
-            </div>        
-        </div>
-        <hr>
-        <hr>
-        
-        
+    </div>
+</div>
     <!--................................................................................-->
       
       
 
     
-        <script>
+<script>
         queue()
             .defer(d3.csv, "data/Z_Total_Breakdown.csv")
     
@@ -119,8 +143,8 @@
             var GFPBar = dc.rowChart("#GFPRank");
             
             GFPBar
-                .width(600)
-                .height(450)
+                .width(500)
+                .height(375)
                 .dimension(GFPRank_dim)
                 .group(GFPRank_group)
                 .xAxis().ticks(9);
@@ -142,8 +166,8 @@
             var PopChart = dc.barChart ("#TotalPopBar");
                 
                 PopChart
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .dimension(TotalPop_dim)
                     .group(TotalPop_group)
                     .transitionDuration(700)
@@ -176,8 +200,8 @@
             var MilChart = dc.barChart ("#ManpowerStack");
                 
                 MilChart
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .margins({top: 50, right: 50, bottom: 50, left: 50})
                     .dimension(Manpower_dim)
                     .group(Manpower_group)
@@ -213,8 +237,8 @@
             var MilChart = dc.barChart ("#TotPersStack");
                 
                 MilChart
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .margins({top: 50, right: 50, bottom: 50, left: 50})
                     .dimension(TotalPersonnel_dim)
                     .group(ActivePersByCountry)
@@ -253,8 +277,8 @@
             var stackedChart = dc.barChart ("#TotalAir")
                 
                 stackedChart
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .dimension(TotalAir_dim)
                     .group(TotalAirStrByCountry)
                     .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
@@ -302,8 +326,8 @@
             var stackedChart = dc.barChart ("#AirStack")
                 
                 stackedChart
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .dimension(AirBreak_dim)
                     .group(FightersByCountry)
                     .stack(AttakersByCountry)
@@ -316,7 +340,6 @@
                     .legend(dc.legend())
                     .renderlet(function (chart) {
         
-                        //Check if labels exist
                         var gLabels = chart.select(".labels");
                         if (gLabels.empty()){
                             gLabels = chart.select(".chart-body").append('g').classed('labels', true);
@@ -368,8 +391,8 @@
             var stackedChart = dc.barChart ("#HeliStack")
                 
                 stackedChart
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .dimension(Heli_dim)
                     .group(TotalHeliByCountry)
                     .stack(AttackHeliByCountry)
@@ -430,8 +453,8 @@
             var stackedChart = dc.barChart ("#ArmyStack")
                 
                 stackedChart
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .dimension(ArmyDim)
                     .group(CombatTanksByCountry)
                     .stack(ArmouredFVByCountry)
@@ -466,8 +489,8 @@
             var NavalChart = dc.barChart ("#TotalNavalBar");
                 
                 NavalChart
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .dimension(NavalDim)
                     .group(TotalNavalAssByCountry)
                     .transitionDuration(700)
@@ -539,8 +562,8 @@
             var NavalChart2 = dc.barChart ("#NavalStack")
                 
                 NavalChart2
-                    .width(600)
-                    .height(450)
+                    .width(500)
+                    .height(375)
                     .dimension(NavalBreak_dim)
                     .group(MineVesselsByCountry)
                     .stack(PatrolCraftByCountry)
@@ -561,8 +584,8 @@
             dc.renderAll();        
         }         
         
-               
-        </script>
+            
+</script>
         
     </body>
     
