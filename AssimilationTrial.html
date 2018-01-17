@@ -78,10 +78,23 @@
                 <a name="Manpower"></a>
                 <div class="row row1">
                     <h2 class="col-md-6 col-md-offset-5">Manpower<button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#ManModal" title="More info" href="#">More Info</button></h2>
-                    <div class="pad1 col-md-6" id="GFPRank"></div>
-                    <div class="pad1 col-md-6" id="TotalPopBar"></div>
-                    <div class="pad1 col-md-6" id="ManpowerStack"></div>
-                    <div class="pad1 col-md-6" id="TotPersStack"></div>
+                    
+                    <div>
+                        <div class="pad1 col-md-6" id="GFPRank"><h3 class="col-md-5 col-md-offset-3"><u>Power Index</u></h3></div>
+                    </div>
+                    
+                    <div>
+                        <div class="pad1 col-md-6" id="TotalPopBar"><h3 class="col-md-5 col-md-offset-3"><u>Total Population</u></h3></div>
+                        
+                    </div>
+                    
+                    <div>
+                        <div class="pad1 col-md-6" id="ManpowerStack"><h3 class="col-md-5 col-md-offset-2"><u>Manpower Available</u></h3></div>
+                    </div>
+                    
+                    <div>
+                        <div class="pad1 col-md-6" id="TotPersStack"><h3 class="col-md-7 col-md-offset-2"><u>Total Military Personnel</u></h3></div>
+                    </div>
                     
                     <div id="ManModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -124,36 +137,47 @@
                 <a name="Air"></a>
                 <div class="row row1">
                     <h2 class="col-md-6 col-md-offset-5">Airpower <button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#AirModal" title="More info" href="#">More Info</button></h2>
-                        <div class="pad1 col-md-6" id="TotalAir"></div>
-                        <div class="pad1 col-md-6" id="AirStack"></div>
-                        <div class="pad1 col-md-6" id="HeliStack"></div>
+                    
+                    <div>
+                        <div class="pad1 col-md-6" id="TotalAir"><h3 class="col-md-5 col-md-offset-3"><u>Total Air Assets</u></h3></div>
+                    </div>
+                    
+                    <div>
+                        <div class="pad1 col-md-6" id="AirStack"><h3 class="col-md-5 col-md-offset-2"><u>Total Aircraft by Type</u></h3></div>
                         
-                        <div id="AirModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
-                            
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h3 class="modal-title"><strong>Manpower Info</strong></h3>
-                                    </div>
-                                    <div class="modal-body">
-                                            <div class="container-fluid">
-                                                <div class="row">
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                                        <p><strong>Graph 1</strong> - Each</p>
-                                                        <p></p>
-                                                        <p></p>
-                                                        <br></br>
-                                                    </div>
+                    </div>
+                    
+                    <div>
+                        <div class="pad1 col-md-6" id="HeliStack"><h3 class="col-md-6 col-md-offset-2"><u>Total Helicopters by Type</u></h3></div>
+                    </div>  
+                        
+                        
+                    <div id="AirModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                        
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title"><strong>Manpower Info</strong></h3>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <p><strong>Graph 1</strong> - Each</p>
+                                                    <p></p>
+                                                    <p></p>
+                                                    <br></br>
                                                 </div>
                                             </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                                    </div>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
+                    </div>
                         
                         
                 </div>
@@ -164,9 +188,14 @@
             
             <div class="container-fluid ArmyContainer">
                 <a name="Army"></a>
-                <div class="row row1 pad1">
-                    <h2 class="col-md-6 col-md-offset-4">Army Strength <button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#ArmyModal" title="More info" href="#">More Info</button></h2>
-                        <div class="pad1 col-md-6" id="ArmyStack"></div>
+                <div class="row row1 pad1 pad2">
+                    <h2 class="col-md-6 col-md-offset-2">Army Strength <button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#ArmyModal" title="More info" href="#">More Info</button></h2>
+                        
+                    <div>
+                        <div class="pad1 col-md-6" id="ArmyStack"><h3 class="col-md-11 col-md-offset-2"><u>Total Combat Vehicles by Type</u></h3></div>
+                    </div>    
+                        
+                        
                         
                         <div id="ArmyModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
@@ -204,10 +233,17 @@
             <div class="container-fluid NavalContainer">
                 <a name="Naval"></a>
                 <div class="row row1 pad1">
-                    <h2 class="col-md-6 col-md-offset-5">Naval power <button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#NavalModal" title="More info" href="#">More Info</button></h2>
-                        <div class="pad1 col-md-6" id="TotalNavalBar"></div>
-                        <div class="pad1 col-md-6" id="NavalStack"></div>
+                    <h2 class="col-md-6 col-md-offset-4">Naval power <button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#NavalModal" title="More info" href="#">More Info</button></h2>
                         
+                    <div>
+                        <div class="pad1 col-md-6" id="TotalNavalBar"><h3 class="col-md-5 col-md-offset-2"><u>Total Naval Assets</u></h3></div>
+                    </div>    
+                    
+                    <div>
+                        <div class="pad1 col-md-6" id="NavalStack"><h3 class="col-md-7 col-md-offset-2"><u>Total Sea Vessels by Type</u></h3></div>
+                    </div>
+                    
+                    
                         <div id="NavalModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                             
@@ -308,7 +344,6 @@
                     .xAxisLabel("Country")
                     .yAxisLabel("Population")
                     .yAxis().ticks(10);
-    
            
                 
 
