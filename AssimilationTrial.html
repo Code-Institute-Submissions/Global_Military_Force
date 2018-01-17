@@ -27,6 +27,7 @@
             <nav class="navbar navbar-fixed-top">
                 <div class="row">
                     <h4 class="nav-hr col-md-10 col-md-offset-1">Quick <u>Navigation</u></h4>
+                    <button type="button" class="btn btn-info col-md-7 col-md-offset-2" data-toggle="modal" data-target="#IntroModal">About</button>
                     <a class="col-md-7 col-md-offset-2" href="#Manpower">Manpower</a>
                     <a class="col-md-7 col-md-offset-2" href="#Air">Airpower</a>
                     <a class="col-md-7 col-md-offset-2" href="#Army">Army Strength</a>
@@ -41,33 +42,32 @@
         </div>
         
         
-        <!--<div class="container">-->
-          <!-- Trigger the modal with a button -->
-        <!--    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
-        
-          <!-- Modal -->
-        <!--    <div class="modal show" id="myModal" role="dialog">-->
-        <!--        <div class="modal-dialog">-->
-            
-                  <!-- Modal content-->
-        <!--            <div class="modal-content">-->
-        <!--                <div class="modal-header">-->
-        <!--                    <button type="button" class="close" data-dismiss="modal">&times;</button>-->
-        <!--                    <h4 class="modal-title">Modal Header</h4>-->
-        <!--                </div>-->
-        <!--                <div class="modal-body">-->
-        <!--                    <p>Some text in the modal.</p>-->
-        <!--                </div>-->
-        <!--                <div class="modal-footer">-->
-        <!--                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
-        <!--    </div>-->
-        <!--</div>-->
-        
-        
-        
+        <div class="container">
+            <div class="modal fade" id="IntroModal" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title"><strong>Website Info</strong></h3>
+                        </div>
+                         <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <p>HELLO HELLO WELCOME AND BELCOME ONE AND ALL</p>
+                                            <p>This website presents interactive graphs used information from <a href="https://www.globalfirepower.com">www.globalfirepower.com</a> to  </p>
+                                            </br></br>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         
         
@@ -77,19 +77,58 @@
             <div class="container-fluid ManContainer">
                 <a name="Manpower"></a>
                 <div class="row row1">
-                    <h2 class="col-md-6 col-md-offset-5">Manpower</h2>
-                        <div class="pad1 col-md-6" id="GFPRank"></div>
-                        <div class="pad1 col-md-6" id="TotalPopBar"></div>
-                        <div class="pad1 col-md-6" id="ManpowerStack"></div>
-                        <div class="pad1 col-md-6" id="TotPersStack"></div>
-                
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <p><a class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#ManModal" title="More info" href="#">More Info<span class="glyphicon"></span></a></p>
-                            </span>
-                        </div>
+                    <h2 class="col-md-6 col-md-offset-5">Manpower<button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#ManModal" title="More info" href="#">More Info</button></h2>
+                    <div class="pad1 col-md-6" id="GFPRank"></div>
+                    <div class="pad1 col-md-6" id="TotalPopBar"></div>
+                    <div class="pad1 col-md-6" id="ManpowerStack"></div>
+                    <div class="pad1 col-md-6" id="TotPersStack"></div>
+                    
+                    <div id="ManModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
                         
-                        <div id="ManModal" class="modal fade products" role="dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h3 class="modal-title"><strong>Manpower Info</strong></h3>
+                                </div>
+                                <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <p><strong>Graph 1</strong> - Each military power detailed on GlobalFirepower.com is judged on individual as well as collective factors when it comes to waging a prolonged campaign against another. The numbers are calculated through our in-house formula to produce the PwrIndx (PowerIndex) value which is used in the final ranking. Note that some values are estimated when official numbers are not available.</p>
+                                                    <p>The values showcased above are all considered for the final GFP ranking recognized  as the &quot;Power Index&quot; (abbrv: &quot;PwrIndx&quot;). PwrIndx scores are judged against a perfect value of &quot;0.0000&quot; which is realistically unattainable due to the number of factors considered per country. Balance is the key - a large, strong fighting force across land, sea and air backed by a resilient economy and defensible territory along with an efficient infrastructure - such qualities are those used to round out a particular nation's total fighting strength on paper; it is not enough to field 10 million men or 20,000 tanks or lead the world in oil production. Each nation's final ranking also carries with it bonuses and penalties as needed while landlocked countries (ex: <a href="/country-military-strength-detail.asp?country_id=austria" title="Austrian military strength">Austria</a>) are not penalized for lack of a standing <a href="/navy-ships.asp" title="Navy Ship strength by country">navy</a> - though they do suffer a penalty for not maintaining a viable </p>
+                                                    <p>It bears repeating that nuclear weapons are NOT taken into account for this listing. Powers are based on conventional weaponry in inventory as well as other factors such as <a href="/labor-force-by-country.asp">economic strength</a>, <a href="/border-coverage.asp" title="Border coverage by country">border size</a>, self-sustainability (in regards to wartime resources such as <a href="/oil-production-by-country.asp" title="Oil Production by country">oil</a>), <a href="/waterway-coverage.asp" title="Waterway coverage by country">water access</a></p>
+                                                    <br></br>
+                                                    <p>Graph 2 dia h weio dpdspd vno d  bjkvkjb v bvfvvbjfjb    vvjif vbjv fj fn  f f</p>
+                                                    <p>Graph 3 hsd ailfasblasdbgasb ag bghasdkghkdshhha ragbbgbgbv bvb hv vn v  vj  i j f i fjf if j fi  jb i h jbihfbj  kfb</p>
+                                                    </br></br>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+                
+
+            
+        <!--................................................................................Airpower   -->
+            
+            <div class="container-fluid AirContainer">
+                <a name="Air"></a>
+                <div class="row row1">
+                    <h2 class="col-md-6 col-md-offset-5">Airpower <button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#AirModal" title="More info" href="#">More Info</button></h2>
+                        <div class="pad1 col-md-6" id="TotalAir"></div>
+                        <div class="pad1 col-md-6" id="AirStack"></div>
+                        <div class="pad1 col-md-6" id="HeliStack"></div>
+                        
+                        <div id="AirModal" class="modal fade" role="dialog">
                             <div class="modal-dialog">
                             
                                 <div class="modal-content">
@@ -101,10 +140,10 @@
                                             <div class="container-fluid">
                                                 <div class="row">
                                                     <div class="col-sm-12 col-md-6 col-lg-6">
-                                                        <p>Graph 1 sashguianfkaid fhdfhfhdsnkafh sdlfh dsac sd hvsd jklv dssd</p>
-                                                        <p>Graph 2 dia h weio dpdspd vno d  bjkvkjb v bvfvvbjfjb    vvjif vbjv fj fn  f f</p>
-                                                        <p>Graph 3 hsd ailfasblasdbgasb ag bghasdkghkdshhha ragbbgbgbv bvb hv vn v  vj  i j f i fjf if j fi  jb i h jbihfbj  kfb</p>
-                                                        </br></br>
+                                                        <p><strong>Graph 1</strong> - Each</p>
+                                                        <p></p>
+                                                        <p></p>
+                                                        <br></br>
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,21 +154,7 @@
                                 </div>
                             </div>
                         </div>
-                
-                
-                </div>
-                
-
-            
-        <!--................................................................................Airpower   -->
-            
-            <div class="container-fluid AirContainer">
-                <a name="Air"></a>
-                <div class="row row1">
-                    <h2 class="col-md-6 col-md-offset-5">Airpower</h2>
-                        <div class="pad1 col-md-6" id="TotalAir"></div>
-                        <div class="pad1 col-md-6" id="AirStack"></div>
-                        <div class="pad1 col-md-6" id="HeliStack"></div>
+                        
                         
                 </div>
             </div>
@@ -140,8 +165,37 @@
             <div class="container-fluid ArmyContainer">
                 <a name="Army"></a>
                 <div class="row row1 pad1">
-                    <h2 class="col-md-6 col-md-offset-4">Army Strength</h2>
+                    <h2 class="col-md-6 col-md-offset-4">Army Strength <button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#ArmyModal" title="More info" href="#">More Info</button></h2>
                         <div class="pad1 col-md-6" id="ArmyStack"></div>
+                        
+                        <div id="ArmyModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                            
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h3 class="modal-title"><strong>Manpower Info</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <p><strong>Graph 1</strong> - Each</p>
+                                                        <p></p>
+                                                        <p></p>
+                                                        <br></br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
                 </div>
             </div>
 
@@ -150,9 +204,38 @@
             <div class="container-fluid NavalContainer">
                 <a name="Naval"></a>
                 <div class="row row1 pad1">
-                    <h2 class="col-md-6 col-md-offset-5">Naval power</h2>
+                    <h2 class="col-md-6 col-md-offset-5">Naval power <button class="btn btn-sm btn-info pop-up-button" data-toggle="modal" data-target="#NavalModal" title="More info" href="#">More Info</button></h2>
                         <div class="pad1 col-md-6" id="TotalNavalBar"></div>
                         <div class="pad1 col-md-6" id="NavalStack"></div>
+                        
+                        <div id="NavalModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog">
+                            
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h3 class="modal-title"><strong>Manpower Info</strong></h3>
+                                    </div>
+                                    <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <p><strong>Graph 1</strong> - Each</p>
+                                                        <p></p>
+                                                        <p></p>
+                                                        <br></br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
                 </div>
             </div> 
         

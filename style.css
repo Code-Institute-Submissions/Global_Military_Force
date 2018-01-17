@@ -9,7 +9,7 @@
 
 .navbar {
         width: 15rem;
-        height: 32rem;
+        height: 36rem;
         padding-top: 2.2rem;
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
@@ -58,7 +58,7 @@ hr {
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
-        padding-top: 5rem;
+        padding-top: 10rem;
         padding-bottom: 10rem;
 }
 
