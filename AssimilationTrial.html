@@ -89,7 +89,7 @@
                     </div>
                     
                     <div>
-                        <div class="pad1 col-md-6" id="ManpowerStack"><h3 class="col-md-5 col-md-offset-2"><u>Manpower Available</u></h3></div>
+                        <div class="pad1 col-md-6" id="ManpowerStack"><h3 class="col-md-6 col-md-offset-2"><u>Manpower Available</u></h3></div>
                     </div>
                     
                     <div>
@@ -405,7 +405,7 @@
                     .xUnits(dc.units.ordinal)
                     .xAxisLabel("Country")
                     .yAxisLabel("Military Personnel")
-                    .legend(dc.legend())
+                    .legend(dc.legend().x(400).y(10).itemHeight(13).gap(5))
                     .renderlet(function (chart) {
         
                         var gLabels = chart.select(".labels");
@@ -470,7 +470,7 @@
                     .xUnits(dc.units.ordinal)
                     .xAxisLabel("Country")
                     .yAxisLabel("Military Personnel")
-                    .legend(dc.legend())
+                    .legend(dc.legend().x(400).y(10).itemHeight(13).gap(5))
                     .renderlet(function (chart) {
         
                         var gLabels = chart.select(".labels");
@@ -601,7 +601,6 @@
                 }
             });
             
-            
             var stackedChart = dc.barChart ("#AirStack")
                 
                 stackedChart
@@ -617,7 +616,8 @@
                     .xUnits(dc.units.ordinal)
                     .xAxisLabel("Country")
                     .yAxisLabel("Number of Aircraft")
-                    .legend(dc.legend())
+                    .legend(dc.legend().x(400).y(10).itemHeight(13).gap(5).legendText("Type"))
+
                     .renderlet(function (chart) {
         
                         var gLabels = chart.select(".labels");
@@ -681,7 +681,7 @@
                     .xUnits(dc.units.ordinal)
                     .xAxisLabel("Country")
                     .yAxisLabel("Number of Helicopters")
-                    .legend(dc.legend())
+                    .legend(dc.legend().x(400).y(10).itemHeight(13).gap(5))
                     .renderlet(function (chart) {
         
                         var gLabels = chart.select(".labels");
@@ -776,7 +776,7 @@
                     .xUnits(dc.units.ordinal)
                     .xAxisLabel("Country")
                     .yAxisLabel("Number of Vehicles")
-                    .legend(dc.legend())
+                    .legend(dc.legend().x(400).y(10).itemHeight(13).gap(5))
                     .renderlet(function (chart) {
         
                         var gLabels = chart.select(".labels");
@@ -945,7 +945,7 @@
                     .xUnits(dc.units.ordinal)
                     .xAxisLabel("Country")
                     .yAxisLabel("Number of Sea Vessels")
-                    .legend(dc.legend())
+                    .legend(dc.legend().x(400).y(10).itemHeight(13).gap(5))
                     .renderlet(function (chart) {
         
                         var gLabels = chart.select(".labels");
