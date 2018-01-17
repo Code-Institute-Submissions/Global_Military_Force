@@ -22,17 +22,16 @@
 <div class="container-fluid container-all">
     <div class="title-bar row">
         <h1 class="col-md-4 col-md-offset-5">Global Military Firepower</h1>
-        <a name="top"></a>
     </div>
         <div class="container container-navbar">
             <nav class="navbar navbar-fixed-top">
                 <div class="row">
-                    <h4 class="nav-hr col-md-10 col-md-offset-1">Quick Navigation</h4>
+                    <h4 class="nav-hr col-md-10 col-md-offset-1">Quick <u>Navigation</u></h4>
                     <a class="col-md-7 col-md-offset-2" href="#Manpower">Manpower</a>
                     <a class="col-md-7 col-md-offset-2" href="#Air">Airpower</a>
                     <a class="col-md-7 col-md-offset-2" href="#Army">Army Strength</a>
                     <a class="col-md-8 col-md-offset-2" href="#Naval">Naval Power</a>
-                    <a class="col-md-7 col-md-offset-2" href="#top">Back to top</a>
+                    <a class="col-md-7 col-md-offset-2" href="#">Back to top</a>
                     
                     <div class="chart-stage">
                         <button class="btn btn-warning col-md-7 col-md-offset-2"><a href="javascript:dc.filterAll(); dc.renderAll();">Reset All</a></button>
@@ -42,77 +41,55 @@
         </div>
        
     <!--................................................................................Manpower-->    
-    <div class="container container-body">   
-        
-            <h2 class="col-md-6 col-md-offset-5">Manpower</h2>
-            <a name="Manpower"></a>
-            <!--<div class="container con1 nopadding">-->
+    <!--<div class="container container-body">-->
+            <div class="container-fluid ManContainer">
+                <a name="Manpower"></a>
                 <div class="row row1">
-                        <div class="col-md-6" id="GFPRank"></div>
-                        <div class="col-md-6" id="TotalPopBar"></div>
-                <!--</div>        -->
-            <!--</div>-->
-             
-            <!--<div class="container con2 nopadding">-->
-                <!--<div class="row row1">-->
-                        <div class="col-md-6" id="ManpowerStack"></div>
-                        <div class="col-md-6" id="TotPersStack"></div>
-                </div>        
-            <!--</div>-->
-            <hr>
-            <hr>
-            
+                    <h2 class="col-md-6 col-md-offset-5">Manpower</h2>
+                        <div class="pad1 col-md-6" id="GFPRank"></div>
+                        <div class="pad1 col-md-6" id="TotalPopBar"></div>
+                        <div class="pad1 col-md-6" id="ManpowerStack"></div>
+                        <div class="pad1 col-md-6" id="TotPersStack"></div>
+                </div>
+            </div>
+
             
         <!--................................................................................Airpower   -->
             
-            <h2 class="col-md-6 col-md-offset-3">Airpower</h2>
-            <a name="Air"></a>
-            <!--<div class="container con3 nopadding">-->
-                <div class="row row3">
-                        <div class="col-md-6" id="TotalAir"></div>
-                        <div class="col-md-6" id="AirStack"></div>
-                </div>        
-            <!--</div>-->
-             
-            <!--<div class="container con4 nopadding">-->
-                <div class="row row4">
-                        <div class="col-md-6" id="HeliStack"></div>
+            <div class="container-fluid AirContainer">
+                <a name="Air"></a>
+                <div class="row row1">
+                    <h2 class="col-md-6 col-md-offset-5">Airpower</h2>
+                        <div class="pad1 col-md-6" id="TotalAir"></div>
+                        <div class="pad1 col-md-6" id="AirStack"></div>
+                        <div class="pad1 col-md-6" id="HeliStack"></div>
                         
-                </div>        
-            <!--</div>-->
-            <hr>
-            <hr>
-            
+                </div>
+            </div>
+
             
         <!--................................................................................Army    -->    
             
-            <h2 class="col-md-6 col-md-offset-3">Army Strength</h2>
-            <a name="Army"></a>
-            
-            <!--<div class="container con5 nopadding">-->
-                <div class="row row5">
-                        <div class="col-md-6" id="ArmyStack"></div>
-                </div>        
-            <!--</div>-->
-            <hr>
-            <hr>
-            
+            <div class="container-fluid ArmyContainer">
+                <a name="Army"></a>
+                <div class="row row1 pad1">
+                    <h2 class="col-md-6 col-md-offset-4">Army Strength</h2>
+                        <div class="pad1 col-md-6" id="ArmyStack"></div>
+                </div>
+            </div>
+
         <!--................................................................................Naval    -->    
             
-            <h2 class="col-md-6 col-md-offset-3">Naval power</h2>
-            <a name="Naval"></a>
-            
-            <!--<div class="container con6 nopadding">-->
-                <div class="row row6">
-                        <div class="col-md-6" id="TotalNavalBar"></div>
-                        <div class="col-md-6" id="NavalStack"></div>
-                </div>        
-            <!--</div>-->
-            <hr>
-            <hr>
-            
+            <div class="container-fluid NavalContainer">
+                <a name="Naval"></a>
+                <div class="row row1 pad1">
+                    <h2 class="col-md-6 col-md-offset-5">Naval power</h2>
+                        <div class="pad1 col-md-6" id="TotalNavalBar"></div>
+                        <div class="pad1 col-md-6" id="NavalStack"></div>
+                </div>
+            </div> 
         
-    </div>
+    <!--</div>-->
 </div>
     <!--................................................................................-->
       
