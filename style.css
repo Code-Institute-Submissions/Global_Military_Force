@@ -9,7 +9,7 @@
 
 .navbar {
         width: 15rem;
-        height: 36rem;
+        height: 39rem;
         padding-top: 2.2rem;
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
@@ -17,6 +17,22 @@
         background: rgba(0, 0, 0);
 }
 
+
+.modal {
+        margin-right: 12rem;
+}
+
+.modal-title {
+        text-align: center;
+}
+
+.modal-content {
+        width:75rem;
+}
+
+.modal-footer {
+        text-align: center;
+}
 
 .btn {
         
@@ -29,6 +45,10 @@ a {
 
 a, h1, h4 {
         color: white;
+}
+
+.link {
+        color: black;
 }
 
 hr { 
