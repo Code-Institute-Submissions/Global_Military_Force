@@ -56,12 +56,12 @@
                                         <div class="col-sm-12 col-md-12 col-lg-12">
                                             <p>This website presents up-to-date information on the current Top 10 most powerful militaries in the world. They are compared in four sections: <strong>Manpower</strong>, <strong>Air Power</strong>, <strong>Army Strength</strong> and <strong>Naval Strength</strong>. This data is showcased using interactive bar charts, where bars can be clicked to only show the information for the countries you've selected. This filter is then applied to every chart on this site for simple comparison across sections.</p>
                                             <p>There is a <u>Quick Navigation</u> bar on the left for ease of access. This navigation bar also has a <u>Reset All</u> button to reset any chart filters you have applied.</p>
-                                            <p>The data used in this website came from <a class="link" href="https://www.globalfirepower.com/country-military-strength-detail.asp?country_id=united-states-of-america"><u>GlobalFirepower.com</u></a>, which compares countries on a huge range of parameters, to then rank them by PowerIndex. The sections not covered in this website are <strong>Natural Resources (Petroleum)</strong>, <strong>Logistics</strong>, <strong>Finance</strong> and <strong>Geography</strong>.</p>
+                                            <p>The data used in this website came from <a class="link" href="https://www.globalfirepower.com/country-military-strength-detail.asp?country_id=united-states-of-america"><u>GlobalFirepower.com</u></a>, which compares countries on a huge range of parameters, to then rank them by Power Index. The sections not covered in this website are <strong>Natural Resources (Petroleum)</strong>, <strong>Logistics</strong>, <strong>Finance</strong> and <strong>Geography</strong>.</p>
                                             <p>I hope you enjoy using and learning from this website!</p>
                                             <hr>
-                                            <p>This is how GlobalFirepower.com describes their PowerIndex ranking:</p>
-                                            <p>"Each military power detailed on GlobalFirepower.com is judged on individual as well as collective factors when it comes to waging a prolonged campaign against another. The numbers are calculated through our in-house formula to produce the <strong><u>PowerIndex</u></strong> value which is used in the final ranking. Note that some values are estimated when official numbers are not available.
-                                            <br>The values showcased above are all considered for the final GFP ranking recognized as the Power Index. PowerIndex scores are judged against a perfect value of 0.0000 which is realistically unattainable due to the number of factors considered per country. Balance is the key - a large, strong fighting force across land, sea and air backed by a resilient economy and defensible territory along with an efficient infrastructure - such qualities are those used to round out a particular nation's total fighting strength on paper; it is not enough to field 10 million men or 20,000 tanks or lead the world in oil production.
+                                            <p>This is how GlobalFirepower.com describes their Power Index ranking:</p>
+                                            <p>"Each military power detailed on GlobalFirepower.com is judged on individual as well as collective factors when it comes to waging a prolonged campaign against another. The numbers are calculated through our in-house formula to produce the <strong><u>Power Index</u></strong> value which is used in the final ranking. Note that some values are estimated when official numbers are not available.
+                                            <br>The values showcased above are all considered for the final GFP ranking recognized as the Power Index. Power Index scores are judged against a perfect value of 0.0000 which is realistically unattainable due to the number of factors considered per country. Balance is the key - a large, strong fighting force across land, sea and air backed by a resilient economy and defensible territory along with an efficient infrastructure - such qualities are those used to round out a particular nation's total fighting strength on paper; it is not enough to field 10 million men or 20,000 tanks or lead the world in oil production.
                                             <br>Each nation's final ranking also carries with it bonuses and penalties as needed while landlocked countries (eg: Austria) are not penalized for lack of a standing Navy - though they do suffer a penalty for not maintaining a viable Merchant Marine force.
                                             <br>It bears repeating that nuclear weapons are NOT taken into account for this listing. Powers are based on conventional weaponry in inventory as well as other factors such as economic strength, border size, self-sustainability (in regards to wartime resources such as oil), water access etc.."</p>
                                             
@@ -97,12 +97,13 @@
                     </div>
                     
                     <div>
-                        <div class="pad1 col-md-6" id="ManpowerStack"><h3 class="col-md-6 col-md-offset-2"><u>Manpower Available</u></h3></div>
+                        <div class="pad1 col-md-6" id="TotPersStack"><h3 class="col-md-7 col-md-offset-2"><u>Total Military Personnel</u></h3></div>
                     </div>
                     
                     <div>
-                        <div class="pad1 col-md-6" id="TotPersStack"><h3 class="col-md-7 col-md-offset-2"><u>Total Military Personnel</u></h3></div>
+                        <div class="pad1 col-md-6" id="ManpowerStack"><h3 class="col-md-6 col-md-offset-2"><u>Total Manpower</u></h3></div>
                     </div>
+                    
                     
                     <div id="ManModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -116,11 +117,10 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-12 col-lg-12">
-                                                    <p></p>
-                                                    <br></br>
-                                                    <p>Graph 2 dia h weio dpdspd vno d  bjkvkjb v bvfvvbjfjb    vvjif vbjv fj fn  f f</p>
-                                                    <p>Graph 3 hsd ailfasblasdbgasb ag bghasdkghkdshhha ragbbgbgbv bvb hv vn v  vj  i j f i fjf if j fi  jb i h jbihfbj  kfb</p>
-                                                    </br></br>
+                                                    <p><strong>Power Index Chart</strong> - This row chart arranges countries by their Power Index, where 0.0000 is the theoretical maximum.</p>
+                                                    <p><strong>Total Population Chart</strong> - This bar chart displays countries' total populations</p>
+                                                    <p><strong>Total Military Personnel Chart</strong> - This stacked chart displays total military personnel, split by active and reserve personnel.</p>
+                                                    <p><strong>Total Manpower Chart</strong> - This bar chart displays current manpower</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -170,7 +170,7 @@
                                         <div class="container-fluid">
                                             <div class="row">
                                                 <div class="col-sm-12 col-md-12 col-lg-12">
-                                                    <p><strong>Graph 1</strong> - Each</p>
+                                                    <p><strong>Total Military Personnel Chart</strong> - </p>
                                                     <p></p>
                                                     <p></p>
                                                     <br></br>
@@ -289,6 +289,8 @@
 
     
 <script>
+
+
         queue()
             .defer(d3.csv, "data/Z_Total_Breakdown.csv")
     
@@ -988,6 +990,7 @@
             dc.renderAll();        
         }         
         
+    
             
 </script>
         
