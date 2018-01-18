@@ -1,0 +1,1 @@
+web: gunicorn global-military-firepower:app
