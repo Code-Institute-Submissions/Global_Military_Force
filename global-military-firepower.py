@@ -30,9 +30,8 @@ def gmf_project():
  
     # A constant that defines the record fields that we wish to retrieve.
     FIELDS = {
-        '_id': False, 'funding_status': True, 'school_state': True,
-        'resource_type': True, 'poverty_level': True,
-        'date_posted': True, 'total_donations': True
+        'Country': True, 'Type': True,
+        'Count': True,
     }
  
     # Open a connection to MongoDB using a with statement such that the
