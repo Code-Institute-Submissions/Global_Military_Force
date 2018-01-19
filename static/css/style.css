@@ -74,7 +74,7 @@ hr {
 }
 
 .ManContainer {
-        background-image: url("static/images/History.jpg");
+        background-image: url("../images/History.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
@@ -95,7 +95,7 @@ hr {
 
 
 .AirContainer {
-        background-image: url("static/images/F16.jpg");
+        background-image: url("../images/F16.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
@@ -104,7 +104,7 @@ hr {
 }
 
 .ArmyContainer {
-        background-image: url("static/images/Leopard.jpg");
+        background-image: url("../images/Leopard.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
@@ -113,7 +113,7 @@ hr {
 }
 
 .NavalContainer {
-        background-image: url("static/images/uss_new_jersey.jpg");
+        background-image: url("../images/uss_new_jersey.jpg");
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;

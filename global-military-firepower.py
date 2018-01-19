@@ -2,19 +2,14 @@ from flask import Flask
 from flask import render_template
 from pymongo import MongoClient
 import json
- 
+import os
+
 app = Flask(__name__)
 
+MONGODB_URI = os.environ.get("MONGODB_URI")
+DBS_NAME = os.environ.get("DBS_NAME")
+COLLECTION_NAME = os.environ.get("COLLECTION_NAME")
 
-MONGODB_URI = "mongodb://<dbuser>:<dbpassword>@ds145293.mlab.com:45293/global-military-firepower"
-
-DBS_NAME = 'global-military-firepower'
-COLLECTION_NAME = 'gmfCollection'
- 
- 
-# MONGODB_HOST = 'localhost'
-# MONGODB_PORT = 27017
- 
 @app.route("/")
 def index():
     """
@@ -23,7 +18,7 @@ def index():
     return render_template("index.html")
  
  
-@app.route("/global-military-firepower/gmfCollection")
+@app.route("/data")
 def gmf_project():
     """
     A Flask view to serve the project data from
@@ -35,6 +30,7 @@ def gmf_project():
         'Country': True,
         'Type': True,
         'Count': True,
+        '_id': False
     }
  
     # Open a connection to MongoDB using a with statement such that the
@@ -50,4 +46,4 @@ def gmf_project():
  
  
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host=os.getenv('IP', '0.0.0.0'),port=int(os.getenv('PORT', 8080)))

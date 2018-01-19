@@ -1,87 +1,163 @@
-# Project Title
+# Global Militry Firepower
 
-One Paragraph of project description goes here
+This is a Data Visualisation website developped as the Stream 2 project of The Code Institute's classroom bootcamp. It has interactive charts displaying information on the world's top 10 military powers for comparison and educational purposes.
 
-## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+<!--## Live Demo-->
 
-### Prerequisites
+<!--Here is the link for the Heroku-deployed website https://dr-jordan-peterson-bookstore.herokuapp.com/-->
 
-What things you need to install the software and how to install them
 
-```
-Give examples
-```
+## Components
 
-### Installing
+### Flask
 
-A step by step series of examples that tell you have to get a development env running
+A Python micro-framework that was used to serve the data and render the HTML pages for this Application.
 
-Say what the step will be
 
-```
-Give the example
-```
+### MongoDB database
 
-And repeat
+This is a NoSQL database that converts and .csv data into .JSON and allows it to be accessed. 
 
-```
-until finished
-```
+### Crossfilter.js
 
-End with an example of getting some data out of the system or using it for a little demo
+This is a Javascript based data manipulation library for exploring large multivariate datasets in the browser. It links the charts on this website that use the same crossfilter, making them all filter simultaneously as Users interact with the charts.
 
-## Running the tests
 
-Explain how to run the automated tests for this system
+### D3.js
 
-### Break down into end to end tests
+This is the software that renders the graphs into the html page within an svg element.
 
-Explain what these tests test and why
 
-```
-Give an example
-```
+### Dc.js
 
-### And coding style tests
+This Javascript software allows manipulation of the charts and their properties.
 
-Explain what these tests test and why
 
-```
-Give an example
-```
+## Prerequisites
+
+Here is the list of software required to build this website:
+
+Flask==0.12.2
+
+Jinja2==2.10
+
+MarkupSafe==1.0
+
+Werkzeug==0.14.1
+
+click==6.7
+
+gunicorn==19.7.1
+
+itsdangerous==0.24
+
+psycopg2==2.7.3.2
+
+pymongo==3.6.0
+
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+This project was deployed via Heroku, and pretested using Travis CI.
+
+
+## Database
+
+mLab was used to host the Mongo Database.
+
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+Flask
 
-## Contributing
+HTML
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+CSS
+
+Bootstrap
+
+Python
+
+MongoDB database
+
+d3.js, dc.js, crossfilter.js and queue.js
+
+Data in a .csv file that I manually made using data from GlobalFirepower.com
+
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+The code was written on Cloud9 and version-controlled using github https://github.com/CrisperDarkling/Global_Military_Force
 
-## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+## Project Management
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+I used the Asana website and app to manage my project tasks from beginning to end. I had multiple column headings under which I could easily create, alter and move tasks around.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+My complete tasks:
+
+![AsanaComp](https://s3-eu-west-1.amazonaws.com/jordan-peterson-bookstore/static/images/Asana_GMF_comp.png "Asana Complete Tasks")
+
+
+My incomplete tasks:
+
+![AsanaIncomp](https://s3-eu-west-1.amazonaws.com/jordan-peterson-bookstore/static/images/Asana_GMF_incomp.png "Asana Incomplete Tasks")
+
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+I must acknowledge:
+
+- Richard Dalton & Matt Rudge (Lecturers) and Katie Maxwell & Neil McEwen (Teaching Assitants) for all their teaching, support and coding wisdom throughout this coding course.
+- My class mates for their high-spirits, help and hard work.
+- Dr. Jordan Peterson for being an awesome inspiration.
+
+
+
+
+
+
+
+<!--```-->
+<!--Give examples-->
+<!--```-->
+
+<!--### Installing-->
+
+<!--A step by step series of examples that tell you have to get a development env running-->
+
+<!--Say what the step will be-->
+
+<!--```-->
+<!--Give the example-->
+<!--```-->
+
+<!--And repeat-->
+
+<!--```-->
+<!--until finished-->
+<!--```-->
+
+<!--End with an example of getting some data out of the system or using it for a little demo-->
+
+<!--## Running the tests-->
+
+<!--Explain how to run the automated tests for this system-->
+
+<!--### Break down into end to end tests-->
+
+<!--Explain what these tests test and why-->
+
+<!--```-->
+<!--Give an example-->
+<!--```-->
+
+<!--### And coding style tests-->
+
+<!--Explain what these tests test and why-->
+
+<!--```-->
+<!--Give an example-->
+<!--```-->

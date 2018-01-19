@@ -1,7 +1,7 @@
 
 
         queue()
-            .defer(d3.json, "/global-military-firepower/gmfCollection")
+            .defer(d3.json, "/data")
     
             .await(makeGraphs);
             
@@ -22,9 +22,6 @@
                 }
             });
 
-
-            console.log(GFPRank_group.all());
-            
             var GFPBar = dc.rowChart("#GFPRank");
             
             GFPBar
@@ -238,8 +235,6 @@
                     return 0;
                 }
             });
-            
-            // console.log(FightersByCountry.all())
             
             var stackedChart = dc.barChart ("#TotalAir")
                 
