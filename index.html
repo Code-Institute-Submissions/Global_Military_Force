@@ -8,13 +8,13 @@
         
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="{{url_for ('static', filename='lib/css/introjs.css')}}" />
         <link rel="stylesheet" type="text/css" href="style.css">
         
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+        <!--<script type="text/javascript" src="static/js/graphs.js"></script>-->
         
     </head>
     <body>
@@ -284,16 +284,12 @@
         
     <!--</div>-->
 </div>
-    <!--................................................................................-->
-      
-      
 
-    
 <script>
 
 
         queue()
-            .defer(d3.csv, "data/Z_Total_Breakdown.csv")
+            .defer(d3.csv, "Z_Total_Breakdown.csv")
     
             .await(makeGraphs);
             
@@ -407,7 +403,7 @@
                     .height(400)
                     .margins({top: 50, right: 50, bottom: 40, left: 80})
                     .dimension(Manpower_dim)
-                    .group(Manpower_group, "Manpower Available")
+                    .group(Manpower_group, "Current Manpower Available")
                     .stack(ReachingAgeByCountry, "Reaching Military Age")
                     .transitionDuration(700)
                     .x(d3.scale.ordinal().domain(["USA","Russia","China","India","France","UK","Japan","Turkey","Germany","Egypt"]))
@@ -994,7 +990,8 @@
     
             
 </script>
-        
+
+    
     </body>
     
     <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
