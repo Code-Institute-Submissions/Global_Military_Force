@@ -3,9 +3,9 @@
 This is a Data Visualisation website developped as the Stream 2 project of The Code Institute's classroom bootcamp. It has interactive charts displaying information on the world's top 10 military powers for comparison and educational purposes.
 
 
-<!--## Live Demo-->
+## Live Demo
 
-<!--Here is the link for the Heroku-deployed website https://dr-jordan-peterson-bookstore.herokuapp.com/-->
+Here is the link for the Heroku-deployed website https://global-military-firepower.herokuapp.com/
 
 
 ## Components
@@ -59,7 +59,7 @@ pymongo==3.6.0
 
 ## Deployment
 
-This project was deployed via Heroku, and pretested using Travis CI.
+This project was deployed via Heroku, and pretested using Travis CI
 
 
 ## Database
