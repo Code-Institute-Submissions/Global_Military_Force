@@ -1,4 +1,4 @@
-# Global Militry Firepower
+# Global Military Firepower
 
 This is a Data Visualisation website developped as the Stream 2 project of The Code Institute's classroom bootcamp. It has interactive charts displaying information on the world's top 10 military powers for comparison and educational purposes.
 
