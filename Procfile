@@ -1,1 +1,1 @@
-web: gunicorn global-military-firepower:application
+web: gunicorn global-military-firepower.wsgi:application
